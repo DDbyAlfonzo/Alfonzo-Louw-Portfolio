@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alfonzo | Product Designer</title>
+  <link rel="stylesheet" href="./Stylesheet.css" />
+  <script src="https://unpkg.com/scrollreveal"></script>
+
+  <link rel="icon" href="./images/favicon.png" type="image/x-icon">
+  <link rel="icon" sizes="32x32" href="./images/Favicon32.png.png">
+  <link rel="icon" sizes="16x16" href="./images/Favicon16.png.png">
+  <link rel="icon" sizes="48x48" href="./images/Favicon48.png.png">
+  <link rel="icon" href="./images/favicon.png" sizes="180x180">
+  <link rel="icon" href="./images/favicon.png" type="image/svg+xml">
+
+  <style>
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem 0;
+    }
+
+    .card-overlay {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      border-radius: 1rem;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      height: 360px;
+    }
+
+    .card-overlay img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .card-overlay .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      text-align: center;
+    }
+
+    .card-overlay:hover img {
+      transform: scale(1.05);
+    }
+
+    .card-overlay:hover .overlay {
+      opacity: 1;
+    }
+
+    .overlay h3 {
+      margin: 0;
+      font-size: 1.4rem;
+    }
+
+    .overlay .cta {
+      margin-top: 0.75rem;
+      display: inline-block;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      background-color: #ffffff10;
+      border: 1px solid #ffffff40;
+      border-radius: 0.5rem;
+      color: #fff;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .overlay .cta:hover {
+      background-color: #ffffff30;
+    }
+  </style>
+</head>
+<body>
+    <label class="theme-toggle">
+        <input type="checkbox" id="themeToggle" />
+        <span class="toggle-track">
+          <span class="toggle-thumb"></span>
+          <span class="icon moon">🌙</span>
+          <span class="icon sun">☀️</span>
+        </span>
+      </label>
+
+      <div class="floating-text-bg">
+        <span>UX</span>
+        <span>UI</span>
+        <span>UX</span>
+        <span>UI</span>
+        <span>UX</span>
+      </div>
+
+  <header class="hero-section" id="header">
+    <div class="hero-text">
+      <div class="badge">👋 Hello All</div>
+      <h1>I’m Alfonzo,<br>a Senior Product Designer</h1>
+      <div class="hero-buttons">
+        <a href="#projects" class="btn-primary">View My Work →</a>
+        <a href="#contact" class="btn-outline">Contact Me</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="./photos/Alfonzo Header.jpeg" alt="Alfonzo Silhouette" />
+    </div>
+  </header>
+
+  <section class="about" id="about">
+    <h2>About Me</h2>
+    <p>
+        I’m a Digital Product Designer with a strong background in CX, UX, IxD, 
+        animation, and front-end development. I create intuitive, 
+        engaging solutions that balance user needs with business goals. 
+        With experience across broadcast, consulting, and corporate spaces, 
+        I blend creative and technical thinking to craft user-centric, 
+        impactful digital experiences.
+    </p>
+  </section>
+
+  <section class="projects" id="projects">
+    <h2>My Projects</h2>
+    <div class="cards">
+      <a href="./Projects/FNB - Speedee.html" class="card-overlay">
+        <img src="./photos/Speedee Mock up.png" alt="Portfolio Website" />
+        <div class="overlay">
+          <h3>FNB Speedee</h3>
+          <span class="cta">View Case Study</span>
+        </div>
+      </a>
+      <a href="./Projects/FNB - Licence renewal.html" class="card-overlay">
+        <img src="./photos/FNB - Licence renewal.png" alt="E-commerce App" />
+        <div class="overlay">
+          <h3>RTMC Licence renewal</h3>
+          <span class="cta">View Case Study</span>
+        </div>
+      </a>
+      <a href="./Projects/FNB Sell a vehicle.html" class="card-overlay">
+        <img src="./photos/Sell a vehicle card.png" alt="Dashboard Interface" />
+        <div class="overlay">
+          <h3>Sell a vehicle</h3>
+          <span class="cta">View Case Study</span>
+        </div>
+      </a>
+    </div>
+    <div class="cards">
+      <a href="./Projects/ABSA fatca.html" class="card-overlay">
+        <img src="./photos/Absa design comps 2.png" alt="Portfolio Website" />
+        <div class="overlay">
+          <h3>ABSA FATCA</h3>
+          <span class="cta">View Case Study</span>
+        </div>
+      </a>
+      <a href="./Projects/Discovery Vitality.html" class="card-overlay">
+        <img src="./photos/Discovery head.jpg" alt="E-commerce App" />
+        <div class="overlay">
+          <h3>Discovery - Vitality</h3>
+          <span class="cta">View Case Study</span>
+        </div>
+      </a>
+      <a href="./Projects/Capitec.html" class="card-overlay">
+        <img src="./photos/Capitec Header.png" alt="Dashboard Interface" />
+        <div class="overlay">
+          <h3>Capitec W.A.R.M</h3>
+          <span class="cta">View Case Study</span>
+        </div>
+      </a>
+    </div>
+    <div class="cards">
+      <a href="./Projects/QSP.html" class="card-overlay">
+        <img src="./photos/QSP mock up 1.png" alt="Portfolio Website" />
+        <div class="overlay">
+          <h3>Quick Score Pro (QSP)</h3>
+          <span class="cta">View Case Study</span>
+        </div>
+      </a>
+      <a href="./Projects/Huawei.html" class="card-overlay">
+        <img src="./photos/Huawei mock up 2.png" alt="E-commerce App" />
+        <div class="overlay">
+          <h3>Huawei tracker</h3>
+          <span class="cta">View Case Study</span>
+        </div>
+      </a>
+      <a href="./Projects/Vikela Tech.html" class="card-overlay">
+        <img src="./photos/Vikela Portal Header.png" alt="Dashboard Interface" />
+        <div class="overlay">
+          <h3>Vikela Tech Portal</h3>
+          <span class="cta">View Case Study</span>
+        </div>
+      </a>
+      <a href="./Projects/Pro-Find.html" class="card-overlay">
+        <img src="./photos/Pro-Find header.png" alt="E-commerce App" />
+        <div class="overlay">
+          <h3>Huawei tracker</h3>
+          <span class="cta">View Case Study</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="testimonials" id="testimonials">
+    <h2>Testimonials</h2>
+    <div class="testimonial-carousel">
+      <div class="testimonial active">
+        <p>"Working with Alfonzo was a game-changer. His attention to detail and design thinking truly elevated our product!"</p>
+        <span>– Sarah M., Product Manager</span>
+      </div>
+      <div class="testimonial">
+        <p>"Alfonzo's work on our mobile app UI was top-notch. Super clean, intuitive, and well thought out."</p>
+        <span>– James L., Startup Founder</span>
+      </div>
+      <div class="testimonial">
+        <p>"He nailed our dashboard redesign. Our users love the new experience and we’ve seen a huge bump in engagement."</p>
+        <span>– Linda R., UX Lead</span>
+      </div>
+      <div class="testimonial">
+        <p>"He brings a blend of humor, inspiration, and a strong work ethic, firmly believing that hard work builds character."</p>
+        <span>– Stacey Thomas, Lead Graphic Designer </span>
+      </div>
+      <div class="testimonial">
+        <p>"Alfonzo takes great pride in his work, consistently delivering high-quality results with exceptional attention to detail. 
+          He is not only a talented designer but also a genuinely great person who has become a valued friend."</p>
+        <span>– Richard Welcome, Freelance client </span>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact" action="mailto:alfonzolouw9@gmail.com" method="POST">
+    <h2>Contact Me</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <script>
+    // Theme toggle
+    const toggleButton = document.getElementById('themeToggle');
+    toggleButton.addEventListener('click', () => {
+      document.body.classList.toggle('light-theme');
+    });
+
+    // ScrollReveal animations
+    ScrollReveal().reveal('#header', { delay: 200, distance: '50px', origin: 'top', duration: 800 });
+    ScrollReveal().reveal('#about', { delay: 300, distance: '50px', origin: 'left', duration: 800 });
+    ScrollReveal().reveal('#projects', { delay: 400, distance: '50px', origin: 'right', duration: 800 });
+    ScrollReveal().reveal('#testimonials', { delay: 500, distance: '50px', origin: 'bottom', duration: 800 });
+    ScrollReveal().reveal('#contact', { delay: 600, distance: '50px', origin: 'top', duration: 800 });
+
+    // Testimonial carousel
+    const testimonials = document.querySelectorAll('.testimonial');
+    let currentIndex = 0;
+
+    setInterval(() => {
+      testimonials[currentIndex].classList.remove('active');
+      currentIndex = (currentIndex + 1) % testimonials.length;
+      testimonials[currentIndex].classList.add('active');
+    }, 5000);
+  </script>
+
+<footer>
+  <div class="social-links">
+    <a href="https://www.instagram.com/ddbyalfonzo" aria-label="Instagram" target="_blank">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M7.75 2C5.12665 2 3 4.12665 3 6.75V17.25C3 19.8734 5.12665 22 7.75 22H16.25C18.8734 22 21 19.8734 21 17.25V6.75C21 4.12665 18.8734 2 16.25 2H7.75ZM7.75 3.5H16.25C17.9069 3.5 19.25 4.84315 19.25 6.5V17.5C19.25 19.1569 17.9069 20.5 16.25 20.5H7.75C6.09315 20.5 4.75 19.1569 4.75 17.5V6.5C4.75 4.84315 6.09315 3.5 7.75 3.5ZM12 7C9.51472 7 7.5 9.01472 7.5 11.5C7.5 13.9853 9.51472 16 12 16C14.4853 16 16.5 13.9853 16.5 11.5C16.5 9.01472 14.4853 7 12 7ZM12 8.5C13.6569 8.5 15 9.84315 15 11.5C15 13.1569 13.6569 14.5 12 14.5C10.3431 14.5 9 13.1569 9 11.5C9 9.84315 10.3431 8.5 12 8.5ZM17.25 6.25C16.8358 6.25 16.5 6.58579 16.5 7C16.5 7.41421 16.8358 7.75 17.25 7.75C17.6642 7.75 18 7.41421 18 7C18 6.58579 17.6642 6.25 17.25 6.25Z" />
+      </svg>
+    </a>
+  </div>
+  <p>© 2025 Designed & Developed by Alfonzo</p>
+</footer>
+
+</body>
+</html>

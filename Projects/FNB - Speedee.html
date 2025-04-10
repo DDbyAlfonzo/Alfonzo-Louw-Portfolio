@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Page</title>
+  <link rel="stylesheet" href="./Stylesheet.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+
+<style>
+  .side-buttons {
+    position: fixed;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 9999;
+  }
+
+  .side-button {
+    background-color: #6b46c1;
+    color: white;
+    padding: 12px 16px;
+    text-align: center;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    font-size: 16px;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transform: translateX(100%);
+    opacity: 0;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    cursor: pointer;
+  }
+
+  .side-button svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .side-button.show {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  /* Mobile: icons only */
+  @media (max-width: 600px) {
+    .side-button {
+      border-radius: 50%;
+      padding: 10px;
+      width: 44px;
+      height: 44px;
+      justify-content: center;
+    }
+
+    .side-button span {
+      display: none;
+    }
+  }
+</style>
+</head>
+
+<body>
+   
+  <!-- Side Buttons -->
+  <div class="side-buttons">
+    <a href="../index.html" class="side-button" title="Home">
+      <i data-lucide="home"></i>
+      <span>Home</span>
+    </a>
+    <div class="side-button" onclick="scrollToSection('section1')" title="Desktop research">
+      <i data-lucide="laptop"></i>
+      <span>Desktop research</span>
+    </div>
+    <div class="side-button" onclick="scrollToSection('section2')" title="Competitor analyses">
+      <i data-lucide="chart-area"></i>
+      <span>Competitor analyses</span>
+    </div>
+    <div class="side-button" onclick="scrollToSection('section3')" title="Wireframes & Design">
+      <i data-lucide="image"></i>
+      <span>Wireframes & design</span>
+    </div>
+    <div class="side-button" onclick="scrollToSection('section4')" title="Other projects">
+      <i data-lucide="images"></i>
+      <span>Other projects</span>
+    </div>
+  </div>
+  
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <script>
+    lucide.createIcons();
+
+const buttons = document.querySelectorAll('.side-button');
+let isScrolling;
+
+function showButtons() {
+  buttons.forEach(btn => btn.classList.add('show'));
+}
+
+function hideButtons() {
+  buttons.forEach(btn => btn.classList.remove('show'));
+}
+
+function scrollToSection(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
+
+// Start hidden
+hideButtons();
+
+window.addEventListener('scroll', () => {
+  hideButtons();
+  clearTimeout(isScrolling);
+  isScrolling = setTimeout(() => {
+    showButtons();
+  }, 300);
+});
+  </script>
+
+  <label class="theme-toggle">
+    <input type="checkbox" id="themeToggle" />
+    <span class="toggle-track">
+      <span class="toggle-thumb"></span>
+      <span class="icon moon">🌙</span>
+      <span class="icon sun">☀️</span>
+    </span>
+  </label>
+
+  <div class="floating-text-bg">
+    <span>UX</span><span>UI</span><span>UX</span><span>UI</span><span>UX</span>
+  </div>
+
+
+  <header class="project-hero">
+    <div class="hero-overlayProject"></div>
+    
+    <picture>
+      <!-- Mobile (smallest screens first) -->
+      <source media="(max-width: 480px)" srcset="../photos/Speedee Final.png">
+      
+      <!-- Tablet -->
+      <source media="(max-width: 768px)" srcset="../photos/Speedee Final.png">
+      
+      <!-- Desktop (default) -->
+      <img src="../photos/Speedee Final.png" alt="Project Hero" class="hero-img" />
+    </picture>
+    
+    <div class="hero-textProject">
+      <h1>Speedee</h1>
+      <p>Case study</p>
+    </div>
+  </header>
+  <br>
+  <main class="content">
+
+    <!-- Design Process -->
+    <section class="cardProject">
+      <h2>Design Process</h2>
+    
+      <div class="process-row">
+        <span class="DesignThinking">1. Empathy:</span>
+        <span>Understanding the user's needs.</span>
+      </div>
+    
+      <div class="process-row">
+        <span class="DesignThinking">2. Define:</span>
+        <span>Identifying the problem.</span>
+      </div>
+    
+      <div class="process-row">
+        <span class="DesignThinking">3. Ideate:</span>
+        <span>Exploring various possible solutions.</span>
+      </div>
+    
+      <div class="process-row">
+        <span class="DesignThinking">4. Prototype:</span>
+        <span>Creating low-scale representations of solutions.</span>
+      </div>
+    
+      <div class="process-row">
+        <span class="DesignThinking">5. Test:</span>
+        <span>Testing each solution and refine.</span>
+      </div>
+    
+      <div class="process-row">
+        <span class="DesignThinking">6. Implement:</span>
+        <span>Implementation of the solution in real-life.</span>
+      </div>
+    </section>
+<br>
+    <!-- Project overview -->
+    <section id="Objective" class="cardProject">
+      <h2>Objective</h2>
+      <p>An opportunity exists to offer Marketplace service providers MS 
+        products such as SpeedeeApp payment solutions. 
+        The SpeedeeApp solutions are low-cost payment acceptance solution which is 
+        most suitable for small, medium and micro enterprises, which can run on any 
+        tablet or smart phone (NFC Enabled Android for SpeedeeApp).</p>
+    </section>
+<br>
+    <!-- Desktop research -->
+    <section id="section1" class="cardProject">
+      <h2>Desktop research</h2>
+
+      <h3 class="DesignThinking">1. Identify the topic you want to research:</h3>
+      <li>Mobile Terminals (in POS)</li>
+      <li>POS (point of sales)</li>
+
+      <h3 class="DesignThinking">2. I collected existing data, combining and comparing it to identify patterns and insights.</h3>
+      <h4><i>There are many different types of point of sale terminals. They include:</i></h4>
+   
+      <li class="Line-copy">The simple stationary register, with a cash drawer, credit card reader,
+        and barcode scanner</li>
+      <li>Open-source POS machines with product icons that can be tapped</li>
+      <li>Cloud-based mobile POS machines which use a digital application to conduct business</li>
+      <li>Self-service kiosks (usually tablets) which allow consumers to select their 
+        payment and receipt delivery <br>method, as well as make additional purchases</li>
+
+      <p class="Line-copy"> Mobile POS is a portable computer device that is used especially 
+        as POS (Point of Sales) purpose and it is link to input and output device such as barcode 
+        scanner and thermal printer, installed with special software for POS. This paper is a 
+        proposed two types design of implementation Mobile Point of Sale (MPOS), which are using Mini 
+        PC Raspberry Pi and Smartphone Android OS. Both solution passed the functional test and the 
+        comparison between both is performed, which is shows that Raspberry Pi has more economical 
+        solution but more difficult to be developed, less comfort 
+        and less friendly use than Android Smart Phone based implementation.</p>
+ 
+      <h4><i>mPOS (mobile point-of-sale):</i></h4>
+
+      <p>MPOS, or mobile point-of-sale, is a smartphone, tablet or 
+        dedicated wireless device that performs the functions of a cash register or electronic POS terminal wirelessly.
+        MPOS solutions require little setup compared to traditional POS. Traditional POS systems will usually use a mini desktop 
+        computer connected to a barcode scanner, touchscreen monitor, cash drawer and receipt printer. 
+        MPOS can consist of as little as a normal smartphone with a credit card reader and a 5G cell service. 
+        This lets mPOS have much less setup cost and they can be used anywhere.</p>
+
+      <h4><i>How does an mPOS work?:</i></h4>
+
+      <p>Just about any smartphone or tablet can be converted to an mPOS terminal. The business will 
+        sign up with the mPOS provider and download an app onto the device. Typically, a hardware card reader will be plugged 
+        into the device's USB-C or lightning port to process near-field communication (NFC) or chip payments. Some readers also 
+        provide barcode scanners and receipt printers. Older card readers that use the device's audio jack have been largely phased out. 
+        Some can be optionally connected to a Bluetooth receipt printer.</p>
+
+      <p>Modern mPOS apps can utilie the smartphone's built-in NFC reader without any additional hardware readers. 
+        This can be called tap-on-phone or software POS.</p>
+
+      <p>Often, the mPOS provider also acts as the credit card payment processor. No customer or payment data is stored directly on the device. 
+        The payments can then be directly deposited into the business' bank account. Other systems can be integrated into a traditional POS system. 
+        Some systems also offer entire business management systems with sales, inventory tracking, customer loyalty, returns, gift cards and 
+        individual employee accounts.</p>
+      </section>
+<br>
+  <section class="cardProject">
+  <h2>Key findings & Considerations</h2>
+  <h3 class="DesignThinking">1. Business Needs & Industry-Specific Features</h3>
+    <li>Retail: Inventory management, barcode scanning, and multi-location support.</li>
+    <li>Restaurant: Table management, online ordering, and kitchen display integration.</li>
+    <li>Service-Based: Appointment scheduling, customer databases, and invoicing.</li>
+
+  <h3 class="DesignThinking">2. Ease of Use</h3>
+  <li>User-friendly interface for quick adoption.</li>
+  <li>Fast transaction processing to minimise wait times.</li>
+  <li>Easy onboarding for employees.</li>
+
+<h3 class="DesignThinking">3. Hardware Compatibility</h3>
+<li>Supports necessary peripherals (card readers, barcode scanners, receipt printers).</li>
+<li>Cloud-based vs. on-premise hardware requirements.</li>
+<li>Compatibility with existing devices (iPads, Android tablets, etc.).</li>
+
+<h3 class="DesignThinking">4. Payment Processing Options</h3>
+<li>Accepts multiple payment methods (credit/debit cards, digital wallets, BNPL).</li>
+<li>Integration with preferred payment gateways.</li>
+<li>Transparent pricing for transaction fees.</li>
+
+<h3 class="DesignThinking">5. Software Features & Integrations</h3>
+<li>Inventory tracking and automatic stock updates.</li>
+<li>CRM (Customer Relationship Management) for loyalty programs.</li>
+<li>Integration with accounting software (QuickBooks, Xero, etc.).</li>
+<li>Reporting and analytics for sales insights.</li>
+
+<h3 class="DesignThinking">6. Scalability</h3>
+<li>Can grow with the business (multi-location support, additional users).</li>
+<li>Cloud-based solutions for remote management.</li>
+
+<h3 class="DesignThinking">7. Security & Compliance</h3>
+<li>PCI compliance for secure payments.</li>
+<li>Data encryption to protect customer information.</li>
+<li>Fraud prevention features.</li>
+
+<h3 class="DesignThinking">8. Cost & Pricing Model</h3>
+<li>Monthly subscription vs. one-time purchase.</li>
+<li>Transaction fees and additional charges.</li>
+<li>Cost of hardware and upgrades.</li>
+
+<h3 class="DesignThinking">9. Customer Support & Reliability</h3>
+<li>24/7 support availability.</li>
+<li>Online resources and training materials.</li>
+<li>System uptime and reliability.</li>
+</section>
+
+<br>
+    <!-- Competitor analyses -->
+    <section id="section2" class="cardProject">
+      <h2>Competitor analyses</h2>
+      <p>I aimed to gain a clear understanding of our competitors and the digital products they’ve introduced to the market—focusing on what 
+        UX/UI patterns resonated well with users and which design 
+        approaches needed rethinking to better meet user needs.</p>
+      <img src="../photos/Competitor analysis.png" class="image" alt="Competitor analyses" />
+    </section>
+<br>
+    <!-- Features that stood out -->
+    <section class="cardProject">
+      <h2>Features that stood out</h2>
+      <p>These features significantly streamlined and enhanced the overall user experience.</p>
+      <br>
+      <img src="../photos/Here are 10 features from our competitors 1.png" class="Featureimage" alt="Features that stood out" />
+      </section>
+    <br>
+
+  <!-- SiteMap -->
+  <section class="cardProject">
+    <h2>Site Map</h2>
+    <p>Mid - level sitemap to directing users to the entry point for Speedee™ </p>
+    <img src="../photos/SiteMap 1.png" class="image" alt="SiteMap" />
+  </section>
+<br>
+<!-- Userflow -->
+<section class="cardProject">
+  <h2>Userflow</h2>
+  <p>Three concepts were explored, each addressing different user needs. 
+  The final design was iterated upon to deliver a more intuitive and 
+  efficient user experience.</p>
+  <img src="../photos/User flows.png" class="image" alt="Userflow" />
+</section>
+<br>
+
+    <!-- Wireframes -->
+    <section id="section3" class="cardProject">
+      <h2>Wireframes</h2>
+      <img src="../photos/Wireframe.png" class="image" alt="Wireframes" />
+    </section>
+<br>
+
+  <!-- A/B testing -->
+  <section class="cardProject">
+    <h2>A/B testing</h2>
+    <img src="../photos/Wireframe combo.png" class="image" alt="A/B testing" />
+  </section>
+<br>
+
+<br>
+
+    <!-- Final UI 
+    <section class="cardProject">
+      <h2>Final UI</h2>
+      <div class="image-gallery">
+        <img src="../photos/Speedee Mock up.png" class="popup-img" />
+        <img src="../photos/Speedee Final.png" class="popup-img" />
+      </div>
+    </section> -->
+<br>
+
+<!-- Final Design -->
+<section class="cardProject">
+  <h2>Design comps</h2>
+  <img src="../photos/Speedee Final.png" class="image" alt="Final Design" />
+  <img src="../photos/Speedee Mock up.png" class="image" alt="Final Design" />
+</section>
+<br>
+
+  <!-- Tools used -->
+
+<section class="cardProject">
+  <div class="tools-used">
+      <h3>Tools Used:</h3>
+      <div class="tool-icons">
+        <div class="tool">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" />
+          <span>Figma</span>
+        </div>
+        <div class="tool">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/59/Sketch_Logo.svg" alt="Sketch" />
+          <span>Sketch</span>
+        </div>
+        <div class="tool">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-plain.svg" alt="Illustrator" />
+          <span>Illustrator</span>
+        </div>
+        <div class="tool">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-plain.svg" alt="Photoshop" />
+          <span>Photoshop</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+
+    <!-- Figma Embed -->
+    <section class="cardProject">
+      <h2>Interactive Prototype</h2>
+      <iframe class="figma" src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/proto/fliZ6O3eil65qtdGy2ezRf/AR-DESIGN?page-id=555%3A26912&node-id=555-26923&p=f&viewport=136%2C222%2C0.13&t=T7OSMMelkyDxoTOc-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=555%3A26923" allowfullscreen></iframe>
+    </section>
+<br>
+
+<section id="lessons-learned" class="cardProject">
+  <h2>What Have I Learned</h2>
+
+  <div class="process-row">
+      <span class="DesignThinking">Problem framing is half the solution:</span>
+      <span>Clearly defining the core problem upfront made every design decision more purposeful.</span>
+  </div>
+
+  <div class="process-row">
+      <span class="DesignThinking">Stakeholder interviews provide hidden gems</span>
+      <span>Talking to internal teams revealed edge cases and overlooked workflows.</span>
+  </div>
+   
+  <div class="process-row">
+      <span class="DesignThinking">Quantitative + qualitative = powerful:</span>
+      <span>Pairing analytics with user feedback gave a fuller picture of user behavior.</span>
+  </div>
+
+  <div class="process-row">
+      <span class="DesignThinking">Low-fidelity wins early:</span>
+      <span>Sketching and wireframing saved time and kept the team focused on functionality over aesthetics.</span>
+  </div>
+    
+  <div class="process-row">
+      <span class="DesignThinking">Moodboards align vision:</span>
+      <span>Visual inspiration boards helped align the team’s creative direction early in the process.</span>
+  </div>
+    
+  <div class="process-row">
+      <span class="DesignThinking">Progressive disclosure matters:</span>
+      <span>Giving users information gradually improved comprehension and engagement.</span>
+  </div>
+   
+  <div class="process-row">
+      <span class="DesignThinking">Consistency builds trust:</span>
+      <span>Reusing UI patterns made the product more intuitive and polished.</span>
+  </div>
+  
+</section>
+
+    <!-- Next Project Button -->
+    <div class="next-project">
+      <a href="#" class="next-btn">Next Project →</a>
+    </div>
+<br>
+<section id="section4" class="cardProject">
+  <h2>Other Projects</h2>
+  <div class="project-tiles">
+    <a href="../Projects/FNB - Speedee.html" class="tile">
+      <img src="../photos/Speedee Mock up.png" alt="Project 1 Thumbnail">
+      <span>FNB Speedee</span>
+    </a>
+    <a href="../Projects/ABSA fatca.html" class="tile">
+      <img src="../photos/Absa Header.png" alt="Project 2 Thumbnail">
+      <span>ABSA FATCA</span>
+    </a>
+    <a href="./Capitec.html" class="tile">
+      <img src="../photos/Capitec Header.png" alt="Project 3 Thumbnail">
+      <span>Capitec (W.A.R.M)</span>
+    </a>
+    <a href="../Projects/FNB Sell a vehicle.html" class="tile">
+      <img src="../photos/Sell a vehicle card.png" alt="Project 4 Thumbnail">
+      <span>Sell a vehicle</span>
+    </a>
+    <a href="./FNB - Licence renewal.html" class="tile">
+      <img src="../photos/FNB - Licence renewal.png" alt="Project 5 Thumbnail">
+      <span>FNB Licence renewal</span>
+    </a>
+    <a href="./Huawei.html" class="tile">
+      <img src="../photos/Huawei mock up 2.png" alt="Project 6 Thumbnail">
+      <span>Huawei Tracking system</span>
+    </a>
+    <a href="./QSP.html" class="tile">
+        <img src="../photos/QSP mock up 1.png" alt="Project 6 Thumbnail">
+        <span>Huawei Tracking system</span>
+      </a>
+      <a href="./Discovery Vitality.html" class="tile">
+        <img src="../photos/Discovery head.jpg" alt="Project 6 Thumbnail">
+        <span>Huawei Tracking system</span>
+      </a>
+      <a href="./Vikela Tech.html" class="tile">
+        <img src="../photos/Vikela Portal Header.png" alt="Project 6 Thumbnail">
+        <span>Huawei Tracking system</span>
+      </a>
+      <a href="./Vikela Tech.html" class="tile">
+        <img src="../photos/Pro-Find mock 1.png" alt="Project 6 Thumbnail">
+        <span>Huawei Tracking system</span>
+      </a>
+  </div>
+</section>
+    
+  </main>
+<script>
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      document.body.classList.toggle('light-theme');
+    });
+
+    ScrollReveal().reveal('.header', { delay: 200, distance: '40px', origin: 'top', duration: 800 });
+    ScrollReveal().reveal('.case-intro', { delay: 300, distance: '40px', origin: 'left', duration: 800 });
+    ScrollReveal().reveal('.case-process', { delay: 400, distance: '40px', origin: 'right', duration: 800 });
+    ScrollReveal().reveal('.case-screens img', { delay: 500, interval: 200, distance: '40px', origin: 'bottom', duration: 800 });
+    ScrollReveal().reveal('.case-reflection', { delay: 600, distance: '40px', origin: 'top', duration: 800 });
+  </script>
+
+  <div id="imageModal" class="modal hidden">
+    <span class="close-btn">&times;</span>
+    <img class="modal-content" id="modalImage">
+    <button class="nav prev">&larr;</button>
+    <button class="nav next">&rarr;</button>
+  </div>
+
+  <script src="../Javascript.js"></script>
+
+  <footer>
+    <div class="social-links">
+      <a href="https://www.instagram.com/ddbyalfonzo" aria-label="Instagram" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7.75 2C5.12665 2 3 4.12665 3 6.75V17.25C3 19.8734 5.12665 22 7.75 22H16.25C18.8734 22 21 19.8734 21 17.25V6.75C21 4.12665 18.8734 2 16.25 2H7.75ZM7.75 3.5H16.25C17.9069 3.5 19.25 4.84315 19.25 6.5V17.5C19.25 19.1569 17.9069 20.5 16.25 20.5H7.75C6.09315 20.5 4.75 19.1569 4.75 17.5V6.5C4.75 4.84315 6.09315 3.5 7.75 3.5ZM12 7C9.51472 7 7.5 9.01472 7.5 11.5C7.5 13.9853 9.51472 16 12 16C14.4853 16 16.5 13.9853 16.5 11.5C16.5 9.01472 14.4853 7 12 7ZM12 8.5C13.6569 8.5 15 9.84315 15 11.5C15 13.1569 13.6569 14.5 12 14.5C10.3431 14.5 9 13.1569 9 11.5C9 9.84315 10.3431 8.5 12 8.5ZM17.25 6.25C16.8358 6.25 16.5 6.58579 16.5 7C16.5 7.41421 16.8358 7.75 17.25 7.75C17.6642 7.75 18 7.41421 18 7C18 6.58579 17.6642 6.25 17.25 6.25Z" />
+        </svg>
+      </a>
+    </div>
+    <p>© 2025 Designed & Developed by Alfonzo</p>
+  </footer>
+</body>
+</html>

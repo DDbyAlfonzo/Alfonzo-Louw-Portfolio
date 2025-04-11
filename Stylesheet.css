@@ -1,10 +1,13 @@
 body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #0f0f0f;
-    color: #fff;
-    line-height: 1.6;
-  }
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  background-color: #0f0f0f;
+  color: #fff;
+  transition: background 0.3s, color 0.3s;
+  padding: 0 1rem;
+}
+
   
   header.header {
     text-align: center;
@@ -181,14 +184,10 @@ body {
   }
   
   .card {
-    background: #222;
-    padding: 1rem;
-    border-radius: 12px;
-    width: 300px;
-    text-align: center;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
+    width: 100%;
+    max-width: 300px;
   }
+  
   
   .card:hover {
     transform: translateY(-5px);
@@ -216,11 +215,10 @@ body {
   }
   
   .testimonial-carousel {
-    position: relative;
-    overflow: hidden;
-    height: 150px;
-    text-align: center;
+    min-height: 150px;
+    height: auto;
   }
+  
   
   .testimonial {
     display: none;
@@ -241,9 +239,9 @@ body {
       font-size: 2rem;
     }
     .cards {
-      flex-direction: column;
-      align-items: center;
+      justify-content: center;
     }
+    
     .card {
       width: 90%;
     }
@@ -368,7 +366,43 @@ body {
     max-height: 400px;
   }
   
+  @media (max-width: 768px) {
+    .hero-section {
+      flex-direction: column-reverse;
+      gap: 2rem;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+  
+    .hero-text h1 {
+      font-size: 2rem;
+    }
+  
+    .hero-buttons {
+      justify-content: center;
+    }
+  }
+  
+
   /* Badge */
+
+  @media (max-width: 480px) {
+    .tab {
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+    }
+  
+    .hero-text h1 {
+      font-size: 1.75rem;
+    }
+  
+    .badge {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.75rem;
+    }
+  }
+  
+
   .badge {
     display: inline-block;
     background: #888;
@@ -729,12 +763,17 @@ h2 {
   display: none;
 }
 
-.modal-content {
-  max-width: 90%;
-  max-height: 80%;
-  border-radius: 10px;
-  box-shadow: 0 0 30px rgba(0,0,0,0.6);
+.modal-content img {
+  width: 90vw;
+  max-width: 600px;
+  height: auto;
 }
+
+.modal {
+  padding: 1rem;
+  overflow-y: auto;
+}
+
 
 .close-btn {
   position: absolute;
@@ -1002,6 +1041,58 @@ h2 {
   text-align: center;
 }
 
+/* Base Styles */
+.cardProject {
+  padding: 20px;
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
+.cardProject h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.process-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #444;
+}
+
+.DesignThinking {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .process-row {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .DesignThinking {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cardProject h2 {
+    font-size: 1.5rem;
+  }
+
+  .DesignThinking {
+    font-size: 1rem;
+  }
+
+  .process-row span {
+    font-size: 0.9rem;
+  }
+}
 
 
 

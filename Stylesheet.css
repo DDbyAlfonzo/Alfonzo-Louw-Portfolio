@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'sans-serif', sans-serif;
   line-height: 1.6;
   background-color: #0f0f0f;
   color: #fff;
@@ -322,7 +322,7 @@ body {
   }
   
   body {
-    font-family: 'Georgia', serif;
+    font-family: 'sans-serif', serif;
     line-height: 1.6;
     background-color: #0a0a0a;
     color: #fff;
@@ -993,7 +993,7 @@ h2 {
 /* Tools used */
 
 .tools-used {
-  font-family: 'Georgia', serif;
+  font-family: 'sans-serif', serif;
   padding: 2rem;
 }
 

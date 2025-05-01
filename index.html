@@ -240,12 +240,13 @@
 
   <section class="contact" id="contact" action="mailto:alfonzolouw9@gmail.com" method="POST">
     <h2>Contact Me</h2>
-    <form>
-      <input type="text" placeholder="Your Name" required />
-      <input type="email" placeholder="Your Email" required />
-      <textarea placeholder="Your Message" rows="5" required></textarea>
+    <form action="mailto:alfonzolouw9@gmail.com" method="POST">
+      <input type="text" placeholder="Your Name" name="name" required />
+      <input type="email" placeholder="Your Email" name="email" required />
+      <textarea placeholder="Your Message" name="message" rows="5" required></textarea>
       <button type="submit">Send Message</button>
-    </form>
+  </form>
+  
   </section>
 
   <script>

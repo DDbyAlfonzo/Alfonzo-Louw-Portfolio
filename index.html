@@ -16,95 +16,245 @@
   <link rel="icon" href="./images/favicon.png" type="image/svg+xml">
 
   <style>
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      background-color: #0f0f0f;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      transition: background 0.3s, color 0.3s;
+    }
 
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Modern Cards Grid */
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
       padding: 2rem 0;
     }
 
-    .card-overlay {
+    /* Glassmorphic Card Design */
+    .card-modern {
       position: relative;
-      display: block;
+      border-radius: 1.2rem;
       overflow: hidden;
-      border-radius: 1rem;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-      height: 360px;
-    }
-
-    .card-overlay img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.4s ease;
-    }
-
-    .card-overlay .overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      color: white;
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      background-color: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      cursor: pointer;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .card-modern:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.6);
+    }
+
+    .card-modern img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .card-modern:hover img {
+      transform: scale(1.08) rotate(1deg);
+    }
+
+    .card-info {
       padding: 1.5rem;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
     }
 
-    .card-overlay:hover img {
-      transform: scale(1.05);
-    }
-
-    .card-overlay:hover .overlay {
-      opacity: 1;
-    }
-
-    .overlay h3 {
+    .card-info h3 {
       margin: 0;
-      font-size: 1.4rem;
+      font-size: 1.3rem;
+      font-weight: 600;
+      background: linear-gradient(90deg, #9b59b6, #8e44ad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    .overlay .cta {
-      margin-top: 0.75rem;
-      display: inline-block;
+    .card-info p {
+      font-size: 0.95rem;
+      color: #ddd;
+      margin: 0.5rem 0 1rem;
+      flex: 1;
+    }
+
+    .card-info .cta {
+      align-self: start;
       font-weight: 600;
       padding: 0.5rem 1rem;
-      background-color: #ffffff10;
-      border: 1px solid #ffffff40;
       border-radius: 0.5rem;
+      background: linear-gradient(90deg, #9b59b6, #8e44ad);
       color: #fff;
       text-decoration: none;
       transition: background 0.3s ease;
     }
 
-    .overlay .cta:hover {
-      background-color: #ffffff30;
+    .card-info .cta:hover {
+      background: linear-gradient(90deg, #8e44ad, #9b59b6);
     }
+
+    @media (max-width: 700px) {
+      .card-modern img {
+        height: 180px;
+      }
+    }
+
+    /* Hero Section */
+    .hero-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 3rem 2rem;
+    }
+
+    .hero-text {
+      flex: 1 1 400px;
+      max-width: 600px;
+    }
+
+    .hero-text h1 {
+      font-size: 2.5rem;
+      line-height: 1.2;
+      margin: 1rem 0;
+      text-align: left;
+    }
+
+    .hero-buttons a {
+      margin-right: 1rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .btn-primary {
+      background-color: #9b59b6;
+      color: #fff;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #7a3ea1;
+    }
+
+    .btn-outline {
+      border: 1px solid #fff;
+      color: #fff;
+    }
+
+    .btn-outline:hover {
+      background-color: #ffffff10;
+    }
+
+    .hero-image img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 1rem;
+    }
+
+    section {
+      padding: 3rem 2rem;
+    }
+
+    p {
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    .social-links a {
+      margin: 0 0.5rem;
+      color: #fff;
+      transition: color 0.3s ease;
+    }
+
+    .social-links a:hover {
+      color: #9b59b6;
+    }
+
+    /* Contact Form */
+    .contact form {
+      display: flex;
+      flex-direction: column;
+      max-width: 600px;
+      margin: 0 auto;
+      gap: 1rem;
+    }
+
+    .contact input, .contact textarea {
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      border: none;
+      outline: none;
+      background-color: rgba(255,255,255,0.05);
+      color: #fff;
+      font-size: 1rem;
+      resize: none;
+    }
+
+    .contact button {
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      border: none;
+      background: linear-gradient(90deg, #9b59b6, #8e44ad);
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .contact button:hover {
+      background: linear-gradient(90deg, #8e44ad, #9b59b6);
+    }
+
+    /* Testimonials */
+    .testimonial-carousel {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonial {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .testimonial.active {
+      display: block;
+    }
+
+
   </style>
 </head>
-<body>
-  <div id="particles-js"></div>
-    <label class="theme-toggle">
-        <input type="checkbox" id="themeToggle" />
-        <span class="toggle-track">
-          <span class="toggle-thumb"></span>
-          <span class="icon moon">🌙</span>
-          <span class="icon sun">☀️</span>
-        </span>
-      </label>
 
-      <div class="floating-text-bg">
-        <span>UX</span>
-        <span>UI</span>
-        <span>UX</span>
-        <span>UI</span>
-        <span>UX</span>
-      </div>
+<body>
 
   <header class="hero-section" id="header">
     <div class="hero-text">
@@ -123,89 +273,86 @@
   <section class="about" id="about">
     <h2>About Me</h2>
     <p>
-        I’m a Digital Product Designer with a strong background in CX, UX, IxD, 
-        animation, and front-end development. I create intuitive, 
-        engaging solutions that balance user needs with business goals. 
-        With experience across broadcast, consulting, and corporate spaces, 
-        I blend creative and technical thinking to craft user-centric, 
-        impactful digital experiences.
+      I’m a Digital Product Designer with a strong background in CX, UX, IxD, 
+      animation, and front-end development. I create intuitive, 
+      engaging solutions that balance user needs with business goals. 
+      With experience across broadcast, consulting, and corporate spaces, 
+      I blend creative and technical thinking to craft user-centric, 
+      impactful digital experiences.
     </p>
   </section>
 
   <section class="projects" id="projects">
     <h2>My Projects</h2>
     <div class="cards">
-      <a href="./Projects/FNB - Speedee.html" class="card-overlay">
-        <img src="./photos/Speedee Mock up.png" alt="Portfolio Website" />
-        <div class="overlay">
+      <!-- Project Cards -->
+      <a href="./Projects/FNB - Speedee.html" class="card-modern">
+        <img src="./photos/Speedee Mock up.png" alt="FNB Speedee" />
+        <div class="card-info">
           <h3>FNB Speedee</h3>
           <span class="cta">View Case Study</span>
         </div>
       </a>
-      <a href="./Projects/FNB - Licence renewal.html" class="card-overlay">
-        <img src="./photos/FNB - Licence renewal.png" alt="E-commerce App" />
-        <div class="overlay">
-          <h3>RTMC Licence renewal</h3>
+      <a href="./Projects/FNB - Licence renewal.html" class="card-modern">
+        <img src="./photos/FNB - Licence renewal.png" alt="RTMC Licence Renewal" />
+        <div class="card-info">
+          <h3>RTMC Licence Renewal</h3>
           <span class="cta">View Case Study</span>
         </div>
       </a>
-      <a href="./Projects/FNB Sell a vehicle.html" class="card-overlay">
-        <img src="./photos/Sell a vehicle card.png" alt="Dashboard Interface" />
-        <div class="overlay">
-          <h3>Sell a vehicle</h3>
+      <a href="./Projects/FNB Sell a vehicle.html" class="card-modern">
+        <img src="./photos/Sell a vehicle card.png" alt="Sell a Vehicle" />
+        <div class="card-info">
+          <h3>Sell a Vehicle</h3>
           <span class="cta">View Case Study</span>
         </div>
       </a>
-    </div>
-    <div class="cards">
-      <a href="./Projects/ABSA fatca.html" class="card-overlay">
-        <img src="./photos/Absa design comps 2.png" alt="Portfolio Website" />
-        <div class="overlay">
+      <a href="./Projects/ABSA fatca.html" class="card-modern">
+        <img src="./photos/Absa design comps 2.png" alt="ABSA FATCA" />
+        <div class="card-info">
           <h3>ABSA FATCA</h3>
           <span class="cta">View Case Study</span>
         </div>
       </a>
-      <a href="./Projects/Discovery Vitality.html" class="card-overlay">
-        <img src="./photos/Discovery head.jpg" alt="E-commerce App" />
-        <div class="overlay">
-          <h3>Discovery - Vitality</h3>
+      <a href="./Projects/Discovery Vitality.html" class="card-modern">
+        <img src="./photos/Discovery head.jpg" alt="Discovery Vitality" />
+        <div class="card-info">
+          <h3>Discovery Vitality</h3>
           <span class="cta">View Case Study</span>
         </div>
       </a>
-      <a href="./Projects/Capitec.html" class="card-overlay">
-        <img src="./photos/Capitec Header.png" alt="Dashboard Interface" />
-        <div class="overlay">
+      <a href="./Projects/Capitec.html" class="card-modern">
+        <img src="./photos/Capitec Header.png" alt="Capitec W.A.R.M" />
+        <div class="card-info">
           <h3>Capitec W.A.R.M</h3>
           <span class="cta">View Case Study</span>
         </div>
       </a>
-    </div>
-    <div class="cards">
-      <a href="./Projects/QSP.html" class="card-overlay">
-        <img src="./photos/QSP mock up 1.png" alt="Portfolio Website" />
-        <div class="overlay">
+      <a href="./Projects/QSP.html" class="card-modern">
+        <img src="./photos/QSP mock up 1.png" alt="QSP" />
+        <div class="card-info">
           <h3>Quick Score Pro (QSP)</h3>
           <span class="cta">View Case Study</span>
         </div>
       </a>
-      <a href="./Projects/Huawei.html" class="card-overlay">
-        <img src="./photos/Huawei mock up 2.png" alt="E-commerce App" />
-        <div class="overlay">
-          <h3>Huawei tracker</h3>
+      <a href="./Projects/Huawei.html" class="card-modern">
+        <img src="./photos/Huawei mock up 2.png" alt="Huawei Tracker" />
+        <div class="card-info">
+          <h3>Huawei Tracker</h3>
           <span class="cta">View Case Study</span>
         </div>
       </a>
-      <a href="./Projects/Vikela Tech.html" class="card-overlay">
-        <img src="./photos/Vikela Portal Header.png" alt="Dashboard Interface" />
-        <div class="overlay">
+      <a href="./Projects/Vikela Tech.html" class="card-modern">
+        <img src="./photos/Vikela Portal Header.png" alt="Vikela Tech Portal" />
+        <div class="card-info">
           <h3>Vikela Tech Portal</h3>
           <span class="cta">View Case Study</span>
         </div>
       </a>
-      <a href="./Projects/Pro-Find.html" class="card-overlay">
-        <img src="./photos/Pro-Find header.png" alt="E-commerce App" />
-        <div class="overlay">
-          <h3>Huawei tracker</h3>
+      <a href="./Projects/Pro-Find.html" class="card-modern">
+        <img src="./photos/Pro-Find header.png" alt="Pro-Find" />
+        <div class="card-info">
+          <h3>Pro-Find</h3>
           <span class="cta">View Case Study</span>
         </div>
       </a>
@@ -232,29 +379,36 @@
         <span>– Stacey Thomas, Lead Graphic Designer </span>
       </div>
       <div class="testimonial">
-        <p>"Alfonzo takes great pride in his work, consistently delivering high-quality results with exceptional attention to detail. 
-          He is not only a talented designer but also a genuinely great person who has become a valued friend."</p>
+        <p>"Alfonzo takes great pride in his work, consistently delivering high-quality results with exceptional attention to detail."</p>
         <span>– Richard Welcome, Freelance client </span>
       </div>
     </div>
   </section>
 
-  <section class="contact" id="contact" action="mailto:alfonzolouw9@gmail.com" method="POST">
+  <section class="contact" id="contact">
     <h2>Contact Me</h2>
     <form action="mailto:alfonzolouw9@gmail.com" method="POST">
       <input type="text" placeholder="Your Name" name="name" required />
       <input type="email" placeholder="Your Email" name="email" required />
       <textarea placeholder="Your Message" name="message" rows="5" required></textarea>
       <button type="submit">Send Message</button>
-  </form>
-  
+    </form>
   </section>
+
+  <footer>
+    <div class="social-links">
+      <a href="https://www.instagram.com/ddbyalfonzo" aria-label="Instagram" target="_blank">
+        Instagram
+      </a>
+    </div>
+    <p>© 2025 Designed & Developed by Alfonzo</p>
+  </footer>
 
   <script>
     // Theme toggle
     const toggleButton = document.getElementById('themeToggle');
-    toggleButton.addEventListener('click', () => {
-      document.body.classList.toggle('light-theme');
+    toggleButton.addEventListener('change', () => {
+      document.body.classList.toggle('light-theme', toggleButton.checked);
     });
 
     // ScrollReveal animations
@@ -267,27 +421,11 @@
     // Testimonial carousel
     const testimonials = document.querySelectorAll('.testimonial');
     let currentIndex = 0;
-
     setInterval(() => {
       testimonials[currentIndex].classList.remove('active');
       currentIndex = (currentIndex + 1) % testimonials.length;
       testimonials[currentIndex].classList.add('active');
     }, 5000);
-
-    
-
   </script>
-
-<footer>
-  <div class="social-links">
-    <a href="https://www.instagram.com/ddbyalfonzo" aria-label="Instagram" target="_blank">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M7.75 2C5.12665 2 3 4.12665 3 6.75V17.25C3 19.8734 5.12665 22 7.75 22H16.25C18.8734 22 21 19.8734 21 17.25V6.75C21 4.12665 18.8734 2 16.25 2H7.75ZM7.75 3.5H16.25C17.9069 3.5 19.25 4.84315 19.25 6.5V17.5C19.25 19.1569 17.9069 20.5 16.25 20.5H7.75C6.09315 20.5 4.75 19.1569 4.75 17.5V6.5C4.75 4.84315 6.09315 3.5 7.75 3.5ZM12 7C9.51472 7 7.5 9.01472 7.5 11.5C7.5 13.9853 9.51472 16 12 16C14.4853 16 16.5 13.9853 16.5 11.5C16.5 9.01472 14.4853 7 12 7ZM12 8.5C13.6569 8.5 15 9.84315 15 11.5C15 13.1569 13.6569 14.5 12 14.5C10.3431 14.5 9 13.1569 9 11.5C9 9.84315 10.3431 8.5 12 8.5ZM17.25 6.25C16.8358 6.25 16.5 6.58579 16.5 7C16.5 7.41421 16.8358 7.75 17.25 7.75C17.6642 7.75 18 7.41421 18 7C18 6.58579 17.6642 6.25 17.25 6.25Z" />
-      </svg>
-    </a>
-  </div>
-  <p>© 2025 Designed & Developed by Alfonzo</p>
-</footer>
-
 </body>
 </html>

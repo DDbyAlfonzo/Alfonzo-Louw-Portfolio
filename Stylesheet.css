@@ -96,7 +96,7 @@ body {
     border: none;
     color: white;
     font-size: 1rem;
-    border-radius: 999px;
+    border-radius: 8px;
     cursor: pointer;
     transition: background 0.3s;
   }
@@ -691,6 +691,7 @@ body:not(.light-theme) .social-links a {
 
 h2 {
   font-size: 1.75rem;
+  text-align: center;
   margin-bottom: 1rem;
 }
 
@@ -1094,7 +1095,25 @@ h2 {
   }
 }
 
+/* Underline for all headings */
+h2, h3, h4, h5, h6 {
+  position: relative;
+  display: inline-block; /* Allows line to hug the text */
+  padding-bottom: 0.25rem; /* Space between text and line */
+}
 
+h2::after,
+h6::after {
+  content: "";
+  display: block;
+  width: 50%; /* Adjust length of the line */
+  height: 3px; /* Thickness */
+  background: #6b46c1; /* Line color (matches your accent) */
+  margin-top: 0.25rem; /* Space below text */
+  border-radius: 2px; /* Rounded ends */
+}
 
-
-
+section h2 {
+  text-align: center !important;
+  margin-bottom: 1.5rem;
+}

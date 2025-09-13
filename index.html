@@ -25,18 +25,10 @@
       transition: background 0.3s, color 0.3s;
     }
 
-    h2 {
-      text-align: center;
-      margin-bottom: 1.5rem;
-    }
+    h2 { text-align: center; margin-bottom: 1.5rem; }
 
     /* Modern Cards Grid */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      padding: 2rem 0;
-    }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; padding: 2rem 0; }
 
     /* Glassmorphic Card Design */
     .card-modern {
@@ -55,221 +47,145 @@
       color: #fff;
     }
 
-    .card-modern:hover {
-      transform: translateY(-6px) scale(1.03);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.6);
-    }
+    .card-modern:hover { transform: translateY(-6px) scale(1.03); box-shadow: 0 16px 40px rgba(0,0,0,0.6); }
+    .card-modern img { width: 100%; height: 220px; object-fit: cover; transition: transform 0.4s ease; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .card-modern:hover img { transform: scale(1.08) rotate(1deg); }
 
-    .card-modern img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      transition: transform 0.4s ease;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
+    .card-info { padding: 1.5rem; display: flex; flex-direction: column; flex: 1; justify-content: space-between; }
+    .card-info h3 { margin: 0; font-size: 1.3rem; font-weight: 600; background: linear-gradient(90deg, #9b59b6, #8e44ad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .card-info p { font-size: 0.95rem; color: #ddd; margin: 0.5rem 0 1rem; flex: 1; }
+    .card-info .cta { align-self: start; font-weight: 600; padding: 0.5rem 1rem; border-radius: 0.5rem; background: linear-gradient(90deg, #9b59b6, #8e44ad); color: #fff; text-decoration: none; transition: background 0.3s ease; }
+    .card-info .cta:hover { background: linear-gradient(90deg, #8e44ad, #9b59b6); }
 
-    .card-modern:hover img {
-      transform: scale(1.08) rotate(1deg);
-    }
-
-    .card-info {
-      padding: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      justify-content: space-between;
-    }
-
-    .card-info h3 {
-      margin: 0;
-      font-size: 1.3rem;
-      font-weight: 600;
-      background: linear-gradient(90deg, #9b59b6, #8e44ad);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .card-info p {
-      font-size: 0.95rem;
-      color: #ddd;
-      margin: 0.5rem 0 1rem;
-      flex: 1;
-    }
-
-    .card-info .cta {
-      align-self: start;
-      font-weight: 600;
-      padding: 0.5rem 1rem;
-      border-radius: 0.5rem;
-      background: linear-gradient(90deg, #9b59b6, #8e44ad);
-      color: #fff;
-      text-decoration: none;
-      transition: background 0.3s ease;
-    }
-
-    .card-info .cta:hover {
-      background: linear-gradient(90deg, #8e44ad, #9b59b6);
-    }
-
-    @media (max-width: 700px) {
-      .card-modern img {
-        height: 180px;
-      }
-    }
+    @media (max-width: 700px) { .card-modern img { height: 180px; } }
 
     /* Hero Section */
-    .hero-section {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      padding: 3rem 2rem;
-    }
+    .hero-section { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; padding: 3rem 2rem; position: relative; overflow: hidden; }
+    .hero-text { flex: 1 1 400px; max-width: 600px; position: relative; z-index: 1; }
+    .hero-text h1 { font-size: 2.5rem; line-height: 1.2; margin: 1rem 0; text-align: left; }
+    .hero-buttons a { margin-right: 1rem; padding: 0.75rem 1.5rem; border-radius: 0.5rem; text-decoration: none; font-weight: 600; transition: background 0.3s ease; }
+    .btn-primary { background-color: #9b59b6; color: #fff; border: none; }
+    .btn-primary:hover { background-color: #7a3ea1; }
+    .btn-outline { border: 1px solid #fff; color: #fff; }
+    .btn-outline:hover { background-color: #ffffff10; }
+    .hero-image { position: relative; z-index: 1; }
+    .hero-image img { width: 100%; max-width: 400px; border-radius: 1rem; }
 
-    .hero-text {
-      flex: 1 1 400px;
-      max-width: 600px;
-    }
+    section { padding: 3rem 2rem; }
+    p { line-height: 1.6; }
+    footer { text-align: center; padding: 2rem; font-size: 0.9rem; color: #aaa; }
+    .social-links a { margin: 0 0.5rem; color: #fff; transition: color 0.3s ease; }
+    .social-links a:hover { color: #9b59b6; }
 
-    .hero-text h1 {
-      font-size: 2.5rem;
-      line-height: 1.2;
-      margin: 1rem 0;
-      text-align: left;
-    }
+    .contact {
+  background: linear-gradient(135deg, rgba(35,0,60,0.9), rgba(10,0,20,0.9));
+  padding: 4rem 2rem;
+  border-radius: 1rem;
+  position: relative;
+  overflow: hidden;
+}
 
-    .hero-buttons a {
-      margin-right: 1rem;
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.5rem;
-      text-decoration: none;
-      font-weight: 600;
-      transition: background 0.3s ease;
-    }
+.contact-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  align-items: flex-start;
+}
 
-    .btn-primary {
-      background-color: #9b59b6;
-      color: #fff;
-      border: none;
-    }
+.contact-info {
+  flex: 1 1 300px;
+  color: #ddd;
+  font-size: 1rem;
+  line-height: 1.6;
+  padding: 1.5rem;
+}
 
-    .btn-primary:hover {
-      background-color: #7a3ea1;
-    }
+.contact-info a {
+  color: #9b59b6;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.contact-info a:hover { color: #8e44ad; }
 
-    .btn-outline {
-      border: 1px solid #fff;
-      color: #fff;
-    }
+.contact-info .info-item { margin: 1rem 0; }
 
-    .btn-outline:hover {
-      background-color: #ffffff10;
-    }
+.contact-form-card {
+  flex: 1 1 400px;
+  padding: 2rem;
+  background: rgba(255,255,255,0.05);
+  border-radius: 1rem;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.contact-form-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 50px rgba(0,0,0,0.7);
+}
 
-    .hero-image img {
-      width: 100%;
-      max-width: 400px;
-      border-radius: 1rem;
-    }
+.contact-form-card form input,
+.contact-form-card form textarea {
+  background: rgba(255,255,255,0.08);
+  border-radius: 0.5rem;
+  border: none;
+  padding: 0.75rem 1rem;
+  color: #fff;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
+}
 
-    section {
-      padding: 3rem 2rem;
-    }
+.contact-form-card form button {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  border: none;
+  background: linear-gradient(90deg, #9b59b6, #8e44ad);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.contact-form-card form button:hover {
+  background: linear-gradient(90deg, #8e44ad, #9b59b6);
+}
 
-    p {
-      line-height: 1.6;
-    }
+@media (max-width: 900px) {
+  .contact-wrapper { flex-direction: column; }
+}
 
-    footer {
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.9rem;
-      color: #aaa;
-    }
-
-    .social-links a {
-      margin: 0 0.5rem;
-      color: #fff;
-      transition: color 0.3s ease;
-    }
-
-    .social-links a:hover {
-      color: #9b59b6;
-    }
-
-    /* Contact Form */
-    .contact form {
-      display: flex;
-      flex-direction: column;
-      max-width: 600px;
-      margin: 0 auto;
-      gap: 1rem;
-    }
-
-    .contact input, .contact textarea {
-      padding: 0.75rem 1rem;
-      border-radius: 0.5rem;
-      border: none;
-      outline: none;
-      background-color: rgba(255,255,255,0.05);
-      color: #fff;
-      font-size: 1rem;
-      resize: none;
-    }
-
-    .contact button {
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.5rem;
-      border: none;
-      background: linear-gradient(90deg, #9b59b6, #8e44ad);
-      color: #fff;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .contact button:hover {
-      background: linear-gradient(90deg, #8e44ad, #9b59b6);
-    }
 
     /* Testimonials */
-    .testimonial-carousel {
-      max-width: 800px;
-      margin: 0 auto;
-      position: relative;
-      overflow: hidden;
-    }
+    .testimonial-carousel { max-width: 800px; margin: 0 auto; position: relative; overflow: hidden; }
+    .testimonial { display: none; text-align: center; padding: 2rem; }
+    .testimonial.active { display: block; }
 
-    .testimonial {
-      display: none;
-      text-align: center;
-      padding: 2rem;
-    }
-
-    .testimonial.active {
-      display: block;
-    }
-
-
+    /* Particles div */
+    #particles-js { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 0; }
   </style>
 </head>
 
 <body>
-
+  <!-- Hero Section with Particles -->
   <header class="hero-section" id="header">
+    <div id="particles-js"></div>
+
     <div class="hero-text">
       <div class="badge">👋 Hello All</div>
-      <h1>I’m Alfonzo,<br>a Senior Product Designer</h1>
+      <h1>I’m Alfonzo,<br>a Senior Product <br>Designer</h1>
       <div class="hero-buttons">
         <a href="#projects" class="btn-primary">View My Work →</a>
         <a href="#contact" class="btn-outline">Contact Me</a>
       </div>
     </div>
     <div class="hero-image">
-      <img src="./photos/Alfonzo Header.jpeg" alt="Alfonzo Silhouette" />
+      <img src="./photos/White header.png" alt="Alfonzo Silhouette" />
     </div>
   </header>
 
+  <!-- About -->
   <section class="about" id="about">
     <h2>About Me</h2>
     <p>
@@ -282,6 +198,7 @@
     </p>
   </section>
 
+  <!-- Projects -->
   <section class="projects" id="projects">
     <h2>My Projects</h2>
     <div class="cards">
@@ -359,6 +276,7 @@
     </div>
   </section>
 
+  <!-- Testimonials -->
   <section class="testimonials" id="testimonials">
     <h2>Testimonials</h2>
     <div class="testimonial-carousel">
@@ -385,32 +303,46 @@
     </div>
   </section>
 
-  <section class="contact" id="contact">
-    <h2>Contact Me</h2>
-    <form action="mailto:alfonzolouw9@gmail.com" method="POST">
-      <input type="text" placeholder="Your Name" name="name" required />
-      <input type="email" placeholder="Your Email" name="email" required />
-      <textarea placeholder="Your Message" name="message" rows="5" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-  </section>
+<!-- Contact -->
+<section class="contact" id="contact">
+  <h2>Get In Touch</h2>
+  <div class="contact-wrapper">
+    <div class="contact-info">
+      <p>I'd love to hear about your project or answer any questions you have. Feel free to reach out using the form.</p>
+      <div class="info-item">
+        <strong>Email:</strong> <a href="mailto:alfonzolouw9@gmail.com">alfonzolouw9@gmail.com</a>
+      </div>
+      <div class="info-item">
+        <strong>Phone:</strong> <a href="tel:+2785817191">(078) 581-7191</a>
+      </div>
+      <div class="info-item">
+        <strong>Follow me:</strong>
+        <div class="social-links">
+          <a href="https://www.instagram.com/ddbyalfonzo" target="_blank">Instagram</a>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form-card card-modern">
+      <form action="mailto:alfonzolouw9@gmail.com" method="POST">
+        <input type="text" placeholder="Your Name" name="name" required />
+        <input type="email" placeholder="Your Email" name="email" required />
+        <textarea placeholder="Your Message" name="message" rows="5" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+
 
   <footer>
     <div class="social-links">
-      <a href="https://www.instagram.com/ddbyalfonzo" aria-label="Instagram" target="_blank">
-        Instagram
-      </a>
+      <a href="https://www.instagram.com/ddbyalfonzo" aria-label="Instagram" target="_blank">Instagram</a>
     </div>
     <p>© 2025 Designed & Developed by Alfonzo</p>
   </footer>
 
   <script>
-    // Theme toggle
-    const toggleButton = document.getElementById('themeToggle');
-    toggleButton.addEventListener('change', () => {
-      document.body.classList.toggle('light-theme', toggleButton.checked);
-    });
-
     // ScrollReveal animations
     ScrollReveal().reveal('#header', { delay: 200, distance: '50px', origin: 'top', duration: 800 });
     ScrollReveal().reveal('#about', { delay: 300, distance: '50px', origin: 'left', duration: 800 });
@@ -426,6 +358,32 @@
       currentIndex = (currentIndex + 1) % testimonials.length;
       testimonials[currentIndex].classList.add('active');
     }, 5000);
+
+    // Initialize particles.js
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 60, density: { enable: true, value_area: 800 } },
+        color: { value: ["#9b59b6", "#8e44ad", "#d35400"] },
+        shape: { type: "circle" },
+        opacity: { value: 0.6, random: true },
+        size: { value: 3, random: true },
+        line_linked: { enable: true, distance: 150, color: "#9b59b6", opacity: 0.4, width: 1 },
+        move: { enable: true, speed: 2, random: true }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: true, mode: "grab" },
+          onclick: { enable: true, mode: "repulse" },
+          resize: true
+        },
+        modes: {
+          grab: { distance: 180, line_linked: { opacity: 0.7 } },
+          repulse: { distance: 120, duration: 0.4 }
+        }
+      },
+      retina_detect: true
+    });
   </script>
 </body>
 </html>

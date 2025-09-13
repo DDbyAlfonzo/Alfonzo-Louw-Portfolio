@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: 'sans-serif', sans-serif;
+  font-family: 'Helvetica Neue', sans-serif;
   line-height: 1.6;
   background-color: #0f0f0f;
   color: #fff;
@@ -322,7 +322,7 @@ body {
   }
   
   body {
-    font-family: 'sans-serif', serif;
+    font-family: 'Helvetica Neue', sans-serif;
     line-height: 1.6;
     background-color: #0a0a0a;
     color: #fff;
@@ -994,7 +994,7 @@ h2 {
 /* Tools used */
 
 .tools-used {
-  font-family: 'sans-serif', serif;
+  font-family: 'Helvetica Neue', sans-serif;
   padding: 2rem;
 }
 

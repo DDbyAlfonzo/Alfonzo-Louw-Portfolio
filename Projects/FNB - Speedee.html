@@ -10,28 +10,33 @@
 <body class="dark-theme">
 
 <!-- Floating Side Buttons -->
-<div class="prototype-buttons side-buttons">
-  <a href="../index.html" class="side-button" data-target="overview">
-    <span class="material-icons icon">home</span>
-    <span class="label">Home</span>
+<div class="side-buttons">
+  <a href="../index.html" class="side-button" title="Home">
+    <i data-lucide="home"></i>
+    <span>Home</span>
   </a>
-  <a href="#Desktop research" class="side-button" data-target="wireframes">
-    <span class="material-icons icon">computer</span>
-    <span class="label">Desktop research</span>
-  </a>
-  <a href="#Competitor analyses" class="side-button" data-target="prototype">
-    <span class="material-icons icon">bar_chart</span>
-    <span class="label">Competitor analysis</span>
-  </a>
-  <a href="#Wireframes" class="side-button" data-target="prototype">
-    <span class="material-icons icon">image</span>
-    <span class="label">Wireframe & Design</span>
-  </a>
-  <a href="#Other projects" class="side-button" data-target="prototype">
-    <span class="material-icons icon">photo_library</span>
-    <span class="label">Other projects</span>
-  </a>
+  <div class="side-button" onclick="scrollToSection('Desktop research')" title="Desktop Research">
+    <i data-lucide="monitor"></i>
+    <span>Desktop</span>
+  </div>
+  <div class="side-button" onclick="scrollToSection('Competitor analyses')" title="Competitor Analysis">
+    <i data-lucide="bar-chart"></i>
+    <span>Competitors</span>
+  </div>
+  <div class="side-button" onclick="scrollToSection('Wireframes')" title="Wireframes & Design">
+    <i data-lucide="layout-dashboard"></i>
+    <span>Design</span>
+  </div>
+  <div class="side-button" onclick="scrollToSection('section4')" title="Other Projects">
+    <i data-lucide="folder-open"></i>
+    <span>Projects</span>
+  </div>
 </div>
+
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<script>lucide.createIcons();</script>
 
 <!-- Hero Section -->
 <header class="project-hero">

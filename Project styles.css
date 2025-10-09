@@ -1,0 +1,493 @@
+/* =========================
+   Base Reset & Typography
+========================= */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark-theme {
+  background-color: #0a0a0a;
+  color: #fff;
+}
+
+body.light-theme {
+  background-color: #f5f5f5;
+  color: #111;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+h2::after {
+  content: "";
+  display: block;
+  width: 30%;
+  height: 3px;
+  background: #6b46c1;
+  margin: 0.25rem auto 0;
+  border-radius: 2px;
+}
+
+p, li {
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+ul {
+  margin: 0.5rem auto 1rem;
+  padding-left: 0;
+  list-style-position: inside;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* =========================
+   Hero Section
+========================= */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  overflow: hidden;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.4);
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+}
+
+.hero-overlay h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero-overlay p {
+  font-size: 1.25rem;
+  opacity: 0.9;
+}
+
+/* =========================
+   Card Project
+========================= */
+.cardProject,
+.prototype-card {
+  background: rgba(30,30,30,0.9);
+  padding: 2rem;
+  margin: 2rem auto;
+  border-radius: 12px;
+  max-width: 900px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.cardProject.scrolled,
+.prototype-card.reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body.light-theme .cardProject,
+body.light-theme .prototype-card {
+  background: #fff;
+  color: #111;
+}
+
+.DesignThinking {
+  font-weight: bold;
+  color: #6b46c1;
+}
+
+.process-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  align-items: center;
+}
+
+.image,
+.Featureimage {
+  width: 100%;
+  border-radius: 12px;
+  margin: 1rem 0;
+  object-fit: cover;
+}
+
+/* =========================
+   Tools Section
+========================= */
+.tools-used .tool-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.tools-used .tool {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.tools-used .tool:nth-child(1) { animation-delay: 0.1s; }
+.tools-used .tool:nth-child(2) { animation-delay: 0.3s; }
+.tools-used .tool:nth-child(3) { animation-delay: 0.5s; }
+.tools-used .tool:nth-child(4) { animation-delay: 0.7s; }
+
+.tools-used .tool img {
+  width: 48px;
+  height: 48px;
+}
+
+.tools-used .tool span {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================
+   Floating Background Text
+========================= */
+.floating-text-bg {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  overflow:hidden;
+  z-index:-1;
+  pointer-events:none;
+}
+
+.floating-text-bg span {
+  position:absolute;
+  font-size:6rem;
+  font-weight:700;
+  color: rgba(255,255,255,0.03);
+  white-space: nowrap;
+  user-select:none;
+  transform: translateX(-100vw);
+  animation: floatText 40s linear infinite;
+}
+
+.floating-text-bg span:nth-child(1){ top:10%; animation-delay:0s; }
+.floating-text-bg span:nth-child(2){ top:30%; animation-delay:8s; }
+.floating-text-bg span:nth-child(3){ top:50%; animation-delay:16s; }
+.floating-text-bg span:nth-child(4){ top:70%; animation-delay:24s; }
+.floating-text-bg span:nth-child(5){ top:90%; animation-delay:32s; }
+
+@keyframes floatText {
+  0% { transform:translateX(-100vw) rotate(0deg);}
+  100% { transform:translateX(120vw) rotate(360deg);}
+}
+
+/* =========================
+   Prototype
+========================= */
+.prototype-preview {
+  margin: 1rem auto;
+  border-radius: 12px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 800px;
+  height: 450px;
+}
+
+.prototype-preview iframe.figma {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.prototype-link {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: #6b46c1;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.prototype-link:hover {
+  background: #553c9a;
+}
+
+/* =========================
+   Floating Side Buttons
+========================= */
+.prototype-buttons.side-buttons {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+.prototype-buttons.side-buttons.show {
+  opacity: 1;
+}
+
+.side-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(40, 40, 40, 0.9);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.side-btn:hover {
+  background: #6b46c1;
+  transform: translateX(-3px);
+}
+
+.side-btn.active {
+  background: #6b46c1;
+  font-weight: bold;
+}
+
+.side-btn .material-icons {
+  font-size: 20px;
+}
+
+/* =========================
+   Other Projects
+========================= */
+.other-projects {
+  text-align: center;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.project-card {
+  background: rgba(30,30,30,0.9);
+  border-radius: 12px;
+  padding: 1rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+body.light-theme .project-card {
+  background: #fff;
+  color: #111;
+}
+
+.project-card img {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.project-card h3 {
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+}
+
+/* =========================
+   Responsive
+========================= */
+@media(max-width:768px){
+  .cardProject, .prototype-card { padding:1.5rem; }
+  .floating-text-bg span{ font-size:4rem; }
+  .hero-overlay h1{ font-size:2.5rem; }
+  .hero-overlay p{ font-size:1rem; }
+  
+  /* side buttons: icons only */
+  .side-btn .label { display:none; }
+  .side-btn { padding:10px; border-radius:50%; justify-content:center; }
+}
+
+@media(max-width:480px){
+  .cardProject, .prototype-card { padding:1rem; }
+  .floating-text-bg span{ font-size:3rem; }
+  .hero-overlay h1{ font-size:2rem; }
+  .hero-overlay p{ font-size:.9rem; }
+}
+
+/* =========================
+   Reduced Motion
+========================= */
+@media (prefers-reduced-motion: reduce) {
+  *,*::before,*::after {
+    animation-duration:0s !important;
+    transition-duration:0s !important;
+    animation-iteration-count:1 !important;
+  }
+}
+
+/* General responsive image rules */
+.image,
+.Featureimage,
+.project-card img {
+  max-width: 100%;
+  height: auto; /* keep aspect ratio */
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* Medium screens */
+@media (max-width: 768px) {
+  .prototype-preview {
+    height: 300px; /* smaller figma preview */
+  }
+  .image,
+  .Featureimage {
+    max-height: 300px;
+  }
+  .project-card img {
+    max-height: 200px;
+  }
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+  .prototype-preview {
+    height: 200px;
+  }
+  .image,
+  .Featureimage {
+    max-height: 200px;
+  }
+  .project-card img {
+    max-height: 160px;
+  }
+}
+
+/* ====== Side Buttons (Default: Desktop) ====== */
+.prototype-buttons.side-buttons {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.side-btn {
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.side-btn:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: scale(1.05);
+}
+
+.side-btn.active {
+  background: #2196f3; /* Highlight active */
+  font-weight: bold;
+}
+
+.side-btn .material-icons {
+  font-size: 20px;
+}
+
+/* ====== Mobile (Bottom Bar) ====== */
+@media (max-width: 768px) {
+  .prototype-buttons.side-buttons {
+    top: auto;
+    bottom: 15px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    flex-direction: row;
+    background: rgba(0, 0, 0, 0.75);
+    padding: 8px 12px;
+    border-radius: 12px;
+    gap: 1rem;
+  }
+
+  .side-btn {
+    padding: 8px;
+    border-radius: 50%;
+    font-size: 0; /* hide text spacing */
+  }
+
+  .side-btn .btn-text {
+    display: none; /* hide text labels */
+  }
+
+  .side-btn .material-icons {
+    font-size: 24px; /* bigger for touch */
+  }
+}

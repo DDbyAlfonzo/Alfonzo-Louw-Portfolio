@@ -1,0 +1,571 @@
+/* ==========================
+   BASE STYLES
+========================== */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  background: #0a0a0a;
+  color: #ffffff;
+  text-align: center; /* Default centered text (hero/footer/buttons) */
+}
+
+h1, h2, h3 {
+  margin: 0 0 1rem;
+  font-weight: 600;
+}
+
+p {
+  margin: 0 0 1rem;
+  line-height: 1.6;
+}
+/* ==========================
+   HERO SECTION
+========================== */
+.project-hero {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #0a0a0a;
+}
+
+.project-hero picture,
+.project-hero .hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  animation: heroPulse 5s ease-in-out infinite alternate;
+}
+
+@keyframes heroPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.hero-overlayProject {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.7), rgba(10, 10, 10, 0.9));
+  z-index: 1;
+}
+
+.hero-textProject {
+  position: absolute;
+  z-index: 2;
+  color: #fff;
+  max-width: 90%;
+  padding: 1rem;
+}
+
+.hero-textProject h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.hero-textProject p {
+  font-size: 1.2rem;
+  color: #e0e0e0;
+  line-height: 1.5;
+}
+
+/* ==========================
+   SIDE BUTTONS
+========================== */
+
+.side-buttons {
+  position: fixed;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 9999;
+}
+
+.side-button {
+  background-color: #6b46c1;
+  color: white;
+  padding: 12px 16px;
+  text-align: center;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  font-size: 16px;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transform: translateX(100%);
+  opacity: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  cursor: pointer;
+}
+
+.side-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.side-button.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Mobile: icons only */
+@media (max-width: 600px) {
+  .side-button {
+    border-radius: 50%;
+    padding: 10px;
+    width: 44px;
+    height: 44px;
+    justify-content: center;
+  }
+
+  .side-button span {
+    display: none;
+  }
+}
+
+/* ==========================
+   CARD PROJECT SECTIONS
+========================== */
+
+.cardProject {
+  margin: 4rem auto;
+  max-width: 900px;
+  background: #121212;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  text-align: left;
+}
+
+.cardProject h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  text-align: left;
+  position: relative;
+  display: inline-block; /* shrink line to heading width */
+}
+
+.cardProject h2::after {
+  content: "";
+  display: block;
+  width: 50px;               /* length of the underline */
+  height: 3px;               /* thickness of the line */
+  background-color: #8b5cf6; /* purple color */
+  margin-top: 6px;           /* spacing from heading */
+  border-radius: 2px;
+}
+
+.cardProject h3 {
+  font-size: 1.2rem;
+  margin: 1.2rem 0 0.5rem;
+  text-align: left;
+}
+
+.cardProject p {
+  margin-bottom: 1rem;
+  color: #d1d1d1;
+  text-align: left;
+}
+
+.cardProject ul {
+  margin: 0.5rem 0 1.5rem;
+  padding-left: 1.5rem;
+  list-style: disc;
+}
+
+.cardProject li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+  color: #d1d1d1;
+  text-align: left;
+}
+
+/* ==========================
+   DESIGN PROCESS (inline layout)
+========================== */
+
+.design-process-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.design-process-inline .process-row {
+  flex: 1 1 auto;
+  min-width: 200px;
+  text-align: center;
+}
+
+.DesignThinking {
+  font-weight: 600;
+  color: #8b5cf6;
+}
+
+/* ==========================
+   ABOUT / TESTIMONIALS / CONTACT
+========================== */
+
+.about,
+.testimonials,
+.contact {
+  max-width: 900px;
+  margin: 4rem auto;
+  padding: 2rem;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+}
+
+.about.reveal,
+.testimonials.reveal,
+.contact.reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.about h2,
+.testimonials h2,
+.contact h2 {
+  font-size: 2rem;
+  color: #ffcc66;
+  margin-bottom: 1rem;
+}
+
+.about p,
+.testimonials p,
+.contact p {
+  color: #d1d1d1;
+  line-height: 1.8;
+  max-width: 700px;
+  margin: 0 auto 1rem;
+}
+
+.testimonial-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+}
+
+.testimonial-cards.reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.testimonial-card {
+  background: #121212;
+  border-radius: 12px;
+  padding: 1.5rem;
+  max-width: 280px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 20px rgba(255, 204, 102, 0.3);
+}
+
+.testimonial-card p {
+  font-style: italic;
+}
+
+.testimonial-card .name {
+  margin-top: 1rem;
+  color: #ffcc66;
+  font-weight: 600;
+}
+
+.contact .info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.contact .info-item .Logo img {
+  max-width: 120px;
+  margin-bottom: 1rem;
+}
+
+.contact a {
+  color: #ffcc66;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.contact a:hover {
+  color: #ffaa33;
+}
+
+/* ==========================
+   NEXT PROJECT / FOOTER
+========================== */
+
+.next-project {
+  text-align: center;
+  margin: 3rem 0;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+}
+
+.next-project.reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.next-project a {
+  display: inline-block;
+  padding: 0.8rem 1.6rem;
+  border-radius: 8px;
+  background: #ffcc66;
+  color: #0a0a0a;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.next-project a:hover {
+  background: #7a3ea1;
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media (max-width: 768px) {
+  .hero-textProject h1 {
+    font-size: 1.8rem;
+  }
+  .hero-textProject p {
+    font-size: 1rem;
+  }
+  .cardProject {
+    padding: 1.5rem;
+  }
+  .testimonial-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+  .testimonial-card {
+    max-width: 90%;
+  }
+}
+
+/* ==========================
+   KEY FINDINGS SECTION
+========================== */
+
+#Key\ Findings {
+  text-align: left;
+}
+
+#Key\ Findings h2,
+#Key\ Findings h3,
+#Key\ Findings ul,
+#Key\ Findings div,
+#Key\ Findings p {
+  text-align: left;
+  margin-left: 0;
+}
+
+#Key\ Findings ul {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+}
+
+#Key\ Findings div {
+  margin-bottom: 0.4rem;
+  line-height: 1.6;
+}
+
+/* ==========================
+   IMAGE FIX FOR CONTAINERS
+========================== */
+
+.cardProject img,
+.cardProject picture img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  margin: 1rem 0;
+  object-fit: cover;
+}
+
+#Features .image {
+  max-width: 80%;
+  height: auto;
+  border-radius: 12px;
+  margin: 1rem auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* Optional: for prototype iframe inside container */
+.prototype-preview iframe {
+  width: 100%;
+  max-width: 100%;
+  height: 500px;
+  border-radius: 12px;
+  border: none;
+}
+
+/* ==========================
+   TOOLS USED
+========================== */
+
+.tools-used .tool-icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.tools-used .tool {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80px;
+  text-align: center;
+}
+
+.tools-used .tool img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
+.tools-used .tool span {
+  font-size: 0.9rem;
+  color: #d1d1d1;
+}
+
+/* ==========================
+   PROTOTYPE BUTTON
+========================== */
+
+.prototype-link {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  background-color: #8e44ad;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.prototype-link:hover {
+  background-color: #7a3ea1;
+}
+
+/* ==========================
+   OTHER PROJECTS SECTION
+========================== */
+
+.other-projects {
+  text-align: center;
+}
+
+.other-projects h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Tile container */
+.project-tiles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+/* Individual tile */
+.project-tiles .tile {
+  background: #181818;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  width: 220px; /* smaller default size */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-tiles .tile:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+}
+
+/* Image inside tile */
+.project-tiles img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-bottom: none;
+}
+
+/* Tile text */
+.project-tiles span {
+  display: block;
+  padding: 0.8rem;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* Optional project title */
+.project-tiles p {
+  font-size: 0.9rem;
+  color: #ffcc66;
+  margin: 0.5rem 0;
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media (max-width: 768px) {
+  .project-tiles {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .project-tiles .tile {
+    width: 85%;
+  }
+
+  .project-tiles img {
+    height: 160px;
+  }
+}
+

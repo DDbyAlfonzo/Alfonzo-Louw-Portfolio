@@ -624,3 +624,10 @@ button:hover ~ .cursor-ring,
   transition: transform 0.2s linear, opacity 0.3s ease;
 }
 
+/* Hide cursor on devices with a pointer that is not fine (touch screens) */
+@media (hover: none) and (pointer: coarse) {
+  body {
+    cursor: none;
+  }
+}
+

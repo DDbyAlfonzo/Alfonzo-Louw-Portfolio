@@ -9,6 +9,9 @@
 </head>
 <body class="dark-theme">
 
+<!-- Include Lucide JS -->
+<script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/lucide.min.js"></script>
+
 <!-- Floating Side Buttons -->
 <div class="side-buttons">
   <a href="../index.html" class="side-button" title="Home">
@@ -20,7 +23,7 @@
     <span>Desktop Research</span>
   </div>
   <div class="side-button" onclick="scrollToSection('Competitor analyses')" title="Competitor Analysis">
-    <i data-lucide="bar-chart"></i>
+    <i data-lucide="bar-chart-2"></i>
     <span>Competitor Analyses</span>
   </div>
   <div class="side-button" onclick="scrollToSection('Wireframes')" title="Wireframes & Design">
@@ -31,12 +34,40 @@
     <i data-lucide="folder-open"></i>
     <span>Other Projects</span>
   </div>
+  <!-- Example Speedee icon -->
+  <div class="side-button" onclick="scrollToSection('Speedee')" title="Speedee™">
+    <i data-lucide="truck"></i>
+    <span>Speedee™</span>
+  </div>
 </div>
 
+<script>
+  // Initialize Lucide icons
+  document.addEventListener("DOMContentLoaded", function() {
+    lucide.createIcons({
+      width: 20,
+      height: 20,
+      stroke: "currentColor"
+    });
+  });
+</script>
 
-<script src="https://unpkg.com/lucide@latest"></script>
 
-<script>lucide.createIcons();</script>
+<style>
+   @media (max-width: 600px) {
+  .side-button {
+    border-radius: 50%;
+    padding: 10px;
+    width: 44px;
+    height: 44px;
+    justify-content: center;
+  }
+
+  .side-button span {
+    display: none;
+  }
+}
+</style>
 
 <!-- Hero Section -->
 <header class="project-hero">
@@ -404,30 +435,5 @@
 <footer>
   <p>© 2025 Designed & Developed by Alfonzo</p>
 </footer>
-
-<div class="cursor-dot"></div>
-<div class="cursor-ring"></div>
-
-<script>
-  const dot = document.querySelector('.cursor-dot');
-  const ring = document.querySelector('.cursor-ring');
-
-  document.addEventListener('mousemove', (e) => {
-    dot.style.left = `${e.clientX}px`;
-    dot.style.top = `${e.clientY}px`;
-
-    ring.animate({
-      left: `${e.clientX}px`,
-      top: `${e.clientY}px`
-    }, { duration: 120, fill: 'forwards' });
-  });
-
-  document.addEventListener('click', () => {
-    ring.style.transform = 'translate(-50%, -50%) scale(0.7)';
-    setTimeout(() => {
-      ring.style.transform = 'translate(-50%, -50%) scale(1)';
-    }, 150);
-  });
-</script>
 </body>
 </html>

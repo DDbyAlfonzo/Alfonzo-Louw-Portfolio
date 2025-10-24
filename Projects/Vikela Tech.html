@@ -310,29 +310,39 @@ window.addEventListener('scroll', () => {
     <p>© 2025 Designed & Developed by Alfonzo</p>
   </footer>
 
-  <div class="cursor-dot"></div>
-<div class="cursor-ring"></div>
-
-<script>
-  const dot = document.querySelector('.cursor-dot');
-  const ring = document.querySelector('.cursor-ring');
-
-  document.addEventListener('mousemove', (e) => {
-    dot.style.left = `${e.clientX}px`;
-    dot.style.top = `${e.clientY}px`;
-
-    ring.animate({
-      left: `${e.clientX}px`,
-      top: `${e.clientY}px`
-    }, { duration: 120, fill: 'forwards' });
-  });
-
-  document.addEventListener('click', () => {
-    ring.style.transform = 'translate(-50%, -50%) scale(0.7)';
-    setTimeout(() => {
-      ring.style.transform = 'translate(-50%, -50%) scale(1)';
-    }, 150);
-  });
-</script>
+  <script>
+    // Side buttons show/hide and highlight
+    const sideButtons = document.querySelectorAll('.side-button');
+    const sections = document.querySelectorAll("section[id]");
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      sideButtons.forEach(btn => btn.classList.remove('show'));
+      scrollTimeout = setTimeout(() => sideButtons.forEach(btn => btn.classList.add('show')), 300);
+    
+      let index = sections.length;
+      while(--index && window.scrollY + 150 < sections[index].offsetTop) {}
+      sideButtons.forEach(btn => btn.classList.remove("active"));
+      if(sideButtons[index]) sideButtons[index].classList.add("active");
+    });
+    
+    document.addEventListener("DOMContentLoaded", () => {
+      const revealElements = document.querySelectorAll(
+        ".about, .testimonials, .testimonial-cards, .contact, .next-project"
+      );
+    
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("reveal");
+            observer.unobserve(entry.target); // only animate once
+          }
+        });
+      }, { threshold: 0.2 });
+    
+      revealElements.forEach((el) => observer.observe(el));
+    });
+    
+    </script>
 </body>
 </html>

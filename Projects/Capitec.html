@@ -6,107 +6,75 @@
   <title>Capitec W.A.R.M</title>
   <link rel="stylesheet" href="../Stylesheet 2.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="./photos/Realistic.Favicon48.png" type="image/x-icon">
-
   <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
 
-  <style>
-    /* Side Buttons */
-    .side-buttons {
-      position: fixed;
-      top: 50%;
-      right: 16px;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      z-index: 9999;
-    }
+  <link rel="icon" href="./photos/Realistic.Favicon48.png" type="image/x-icon">
+  <link rel="icon" sizes="32x32" href="./photos/Realistic.Favicon32.png.png">
+  <link rel="icon" sizes="16x16" href="./photos/Realistic.Favicon16.png.png">
+  <link rel="icon" sizes="48x48" href="./photos/Realistic.Favicon48.png">
+  <link rel="icon" href="./images/favicon.png" sizes="180x180">
+  <link rel="icon" href="./images/favicon.png" type="image/svg+xml">
 
+<style>
+  .side-buttons {
+    position: fixed;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 9999;
+  }
+
+  .side-button {
+    background-color: #6b46c1;
+    color: white;
+    padding: 12px 16px;
+    text-align: center;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    font-size: 16px;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transform: translateX(100%);
+    opacity: 0;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    cursor: pointer;
+  }
+
+  .side-button svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .side-button.show {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  /* Mobile: icons only */
+  @media (max-width: 600px) {
     .side-button {
-      background-color: #6b46c1;
-      color: white;
-      padding: 12px 16px;
-      text-align: center;
-      border-radius: 999px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      white-space: nowrap;
-      font-size: 16px;
-      font-weight: 500;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-      transform: translateX(100%);
-      opacity: 0;
-      transition: transform 0.4s ease, opacity 0.4s ease;
-      cursor: pointer;
-    }
-
-    .side-button svg {
-      width: 20px;
-      height: 20px;
-    }
-
-    .side-button.show {
-      transform: translateX(0);
-      opacity: 1;
-    }
-
-    @media (max-width: 600px) {
-      .side-button {
-        border-radius: 50%;
-        padding: 10px;
-        width: 44px;
-        height: 44px;
-        justify-content: center;
-      }
-
-      .side-button span {
-        display: none;
-      }
-    }
-
-    /* Custom Cursor */
-    body {
-      cursor: none; /* Hide default cursor */
-    }
-
-    .cursor-dot,
-    .cursor-ring {
-      position: fixed;
-      pointer-events: none;
-      z-index: 99999;
-      transform: translate(-50%, -50%);
-    }
-
-    .cursor-dot {
-      width: 6px;
-      height: 6px;
-      background: #b300ff;
       border-radius: 50%;
+      padding: 10px;
+      width: 44px;
+      height: 44px;
+      justify-content: center;
     }
 
-    .cursor-ring {
-      width: 32px;
-      height: 32px;
-      border: 2px solid #b300ff;
-      border-radius: 50%;
-      box-shadow: 0 0 12px #b300ff, 0 0 26px #d633ff;
-      transition: all 0.15s ease-out;
+    .side-button span {
+      display: none;
     }
-
-    a:hover ~ .cursor-ring,
-    button:hover ~ .cursor-ring,
-    .tile:hover ~ .cursor-ring {
-      width: 45px;
-      height: 45px;
-      box-shadow: 0 0 15px #d633ff, 0 0 35px #e066ff;
-    }
-  </style>
+  }
+</style>
 </head>
 
 <body>
+   
   <!-- Side Buttons -->
   <div class="side-buttons">
     <a href="../index.html" class="side-button" title="Home">
@@ -122,125 +90,283 @@
       <span>Other projects</span>
     </div>
   </div>
+  
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
 
-  <!-- Hero Section -->
+  <script>
+    lucide.createIcons();
+
+const buttons = document.querySelectorAll('.side-button');
+let isScrolling;
+
+function showButtons() {
+  buttons.forEach(btn => btn.classList.add('show'));
+}
+
+function hideButtons() {
+  buttons.forEach(btn => btn.classList.remove('show'));
+}
+
+function scrollToSection(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
+
+// Start hidden
+hideButtons();
+
+window.addEventListener('scroll', () => {
+  hideButtons();
+  clearTimeout(isScrolling);
+  isScrolling = setTimeout(() => {
+    showButtons();
+  }, 300);
+});
+  </script>
+
   <header class="project-hero">
     <div class="hero-overlayProject"></div>
+    
     <picture>
+      <!-- Mobile (smallest screens first) -->
       <source media="(max-width: 480px)" srcset="../photos/Capitec Header.png">
+      
+      <!-- Tablet -->
       <source media="(max-width: 768px)" srcset="../photos/Capitec Header.png">
+      
+      <!-- Desktop (default) -->
       <img src="../photos/Capitec Header.png" alt="Project Hero" class="hero-img" />
     </picture>
+    
     <div class="hero-textProject">
       <h1>Capitec W.A.R.M</h1>
       <p>Case study</p>
     </div>
   </header>
-
-  <!-- Main Content -->
+  
   <main class="content">
+
     <!-- Design Process -->
     <section class="cardProject">
       <h2>Design process</h2>
-      <div class="process-row"><span class="DesignThinking">1. Empathy:</span><span>Understanding the user's needs.</span></div><br>
-      <div class="process-row"><span class="DesignThinking">2. Define:</span><span>Identifying the problem.</span></div><br>
-      <div class="process-row"><span class="DesignThinking">3. Ideate:</span><span>Exploring various possible solutions.</span></div><br>
-      <div class="process-row"><span class="DesignThinking">4. Prototype:</span><span>Creating low-scale representations of solutions.</span></div><br>
-      <div class="process-row"><span class="DesignThinking">5. Test:</span><span>Testing each solution and refine.</span></div><br>
-      <div class="process-row"><span class="DesignThinking">6. Implement:</span><span>Implementation of the solution in real-life.</span></div>
-    </section>
-
-    <!-- Project Overview -->
-    <section id="Objective" class="cardProject">
-      <h2>Objective</h2>
-      <p>WhatsApp for Relationship Managers is a Progressive Web Application (PWA) designed to streamline communication between Relationship Managers and their bankers. It enables managers to efficiently close, refer, or escalate banker-submitted requests with speed and ease.
-        Currently, Transactional Bankers and Relationship Managers communicate via social platforms like WhatsApp. However, this often requires Relationship Managers to use their personal accounts or carry bank-issued phones, leading to fragmented communication. With Capitec 
-        Bank having no oversight of these interactions, the result is inconsistent service and a lack of accountability. To address this challenge, I was tasked with developing a personalized solution to streamline and secure communication between teams.</p>
-    </section>
-
-    <!-- Final Design -->
-    <section id="section3" class="cardProject">
-      <h2>Design comps</h2>
-      <img src="../photos/Capitec mock up 1.png" class="image" alt="Final Design" />
-      <img src="../photos/Capitec mock up 2.png" class="image" alt="Final Design" />
-    </section>
-
-    <!-- Tools Used -->
-    <section class="cardProject">
-      <div class="tools-used">
-        <h3>Tools used:</h3>
-        <div class="tool-icons">
-          <div class="tool"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma"><span>Figma</span></div>
-          <div class="tool"><img src="https://upload.wikimedia.org/wikipedia/commons/5/59/Sketch_Logo.svg" alt="Sketch"><span>Sketch</span></div>
-          <div class="tool"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-plain.svg" alt="Illustrator"><span>Illustrator</span></div>
-          <div class="tool"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-plain.svg" alt="Photoshop"><span>Photoshop</span></div>
-        </div>
+    
+      <div class="process-row">
+        <span class="DesignThinking">1. Empathy:</span>
+        <span>Understanding the user's needs.</span>
+      </div>
+      <br>
+      <div class="process-row">
+        <span class="DesignThinking">2. Define:</span>
+        <span>Identifying the problem.</span>
+      </div>
+      <br>
+      <div class="process-row">
+        <span class="DesignThinking">3. Ideate:</span>
+        <span>Exploring various possible solutions.</span>
+      </div>
+      <br>
+      <div class="process-row">
+        <span class="DesignThinking">4. Prototype:</span>
+        <span>Creating low-scale representations of solutions.</span>
+      </div>
+      <br>
+      <div class="process-row">
+        <span class="DesignThinking">5. Test:</span>
+        <span>Testing each solution and refine.</span>
+      </div>
+      <br>
+      <div class="process-row">
+        <span class="DesignThinking">6. Implement:</span>
+        <span>Implementation of the solution in real-life.</span>
       </div>
     </section>
 
-    <!-- Lessons Learned -->
-    <section id="lessons-learned" class="cardProject">
-      <h2>What have I learned</h2>
-      <div class="process-row"><span class="DesignThinking">UX is never really 'done':</span><span> There’s always room for refinement and optimization post-launch.</span></div><br>
-      <div class="process-row"><span class="DesignThinking">Design with scalability in mind:</span><span> Planning for growth helped prevent future UX debt.</span></div><br>
-      <div class="process-row"><span class="DesignThinking">Constraints fuel creativity:</span><span> Working within limitations (tech, compliance, timelines) often sparked better solutions.</span></div><br>
-      <div class="process-row"><span class="DesignThinking">Feedback is a gift:</span><span> Constructive critiques improved the final product and strengthened collaboration.</span></div><br>
-      <div class="process-row"><span class="DesignThinking">Good design requires alignment:</span><span> Early alignment with stakeholders saved a lot of time in the final stages.</span></div><br>
-      <div class="process-row"><span class="DesignThinking">Clear documentation helps everyone:</span><span> Minor adjustments in spacing, labeling, and flows had major impacts on user satisfaction.</span></div><br>
-      <div class="process-row"><span class="DesignThinking">Small tweaks = big wins:</span><span> Clear layout and labels were key for speed and accuracy.</span></div>
+    <!-- Project overview -->
+    <section id="Objective" class="cardProject">
+      <h2>Objective</h2>
+      <p>WhatsApp for Relationship Managers is a Progressive Web Application (PWA) 
+        designed to streamline communication between Relationship Managers and their bankers. 
+        It enables managers to efficiently close, refer, or escalate banker-submitted 
+        requests with speed and ease.<br>
+        Currently, Transactional Bankers and Relationship Managers communicate via social platforms 
+        like WhatsApp. However, this often requires Relationship Managers to use their personal accounts 
+        or carry bank-issued phones, leading to fragmented communication. With Capitec Bank having no 
+        oversight of these interactions, the result is inconsistent service and a lack of accountability. 
+        To address this challenge, I was tasked with developing a personalized solution to streamline and 
+        secure communication between teams</p>
     </section>
 
-    <!-- Other Projects -->
+
+<!-- Final Design -->
+<section id="section3" class="cardProject">
+  <h2>Design comps</h2>
+  <img src="../photos/Capitec mock up 1.png" class="image" alt="Final Design" />
+  <img src="../photos/Capitec mock up 2.png" class="image" alt="Final Design" />
+</section>
+
+<!-- Tools used -->
+
+<section class="cardProject">
+<div class="tools-used">
+    <h3>Tools used:</h3>
+    <div class="tool-icons">
+      <div class="tool">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" />
+        <span>Figma</span>
+      </div>
+      <div class="tool">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/59/Sketch_Logo.svg" alt="Sketch" />
+        <span>Sketch</span>
+      </div>
+      <div class="tool">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-plain.svg" alt="Illustrator" />
+        <span>Illustrator</span>
+      </div>
+      <div class="tool">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-plain.svg" alt="Photoshop" />
+        <span>Photoshop</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="lessons-learned" class="cardProject">
+  <h2>What have I learned</h2>
+
+  <div class="process-row">
+      <span class="DesignThinking">UX is never really 'done':</span>
+      <span>There’s always room for refinement and optimization post-launch.</span>
+  </div>
+  <br>
+  <div class="process-row">
+      <span class="DesignThinking">Design with scalability in mind:</span>
+      <span>Planning for growth helped prevent future UX debt.</span>
+  </div>
+  <br>
+  <div class="process-row">
+      <span class="DesignThinking">Constraints fuel creativity:</span>
+      <span>Working within limitations (tech, compliance, timelines) often sparked better solutions.</span>
+  </div>
+  <br>
+  <div class="process-row">
+      <span class="DesignThinking">Feedback is a gift:</span>
+      <span>Constructive critiques improved the final product and strengthened collaboration.</span>
+  </div>
+  <br> 
+  <div class="process-row">
+      <span class="DesignThinking">Good design requires alignment:</span>
+      <span>Early alignment with stakeholders saved a lot of time in the final stages.</span>
+  </div>
+  <br> 
+  <div class="process-row">
+      <span class="DesignThinking">Clear documentation helps everyone:</span>
+      <span>Minor adjustments in spacing, labeling, and flows had major impacts on user satisfaction.</span>
+  </div>
+  <br>
+  <div class="process-row">
+      <span class="DesignThinking">Small tweaks = big wins:</span>
+      <span>Clear layout and labels were key for speed and accuracy.</span>
+  </div>
+  
+</section>
+
     <section id="section4" class="cardProject">
       <h2>Other projects</h2>
       <div class="project-tiles">
-        <a href="../Projects/FNB - Speedee.html" class="tile"><img src="../photos/Speedee Mock up.png" alt="Project 1 Thumbnail"><span>FNB Speedee</span></a>
-        <a href="../Projects/ABSA fatca.html" class="tile"><img src="../photos/Absa Header.png" alt="Project 2 Thumbnail"><span>ABSA FATCA</span></a>
-        <a href="./Capitec.html" class="tile"><img src="../photos/Capitec Header.png" alt="Project 3 Thumbnail"><span>Capitec (W.A.R.M)</span></a>
-        <a href="../Projects/FNB Sell a vehicle.html" class="tile"><img src="../photos/Sell a vehicle card.png" alt="Project 4 Thumbnail"><span>FNB / Car Scan - Sell a Vehicle</span></a>
-        <a href="./FNB - Licence renewal.html" class="tile"><img src="../photos/FNB - Licence renewal.png" alt="Project 5 Thumbnail"><span>FNB Licence Renewals</span></a>
-        <a href="./Huawei.html" class="tile"><img src="../photos/Huawei mock up 2.png" alt="Project 6 Thumbnail"><span>Huawei Tracking system</span></a>
+        <a href="../Projects/FNB - Speedee.html" class="tile">
+          <img src="../photos/Speedee Mock up.png" alt="Project 1 Thumbnail">
+          <span>FNB Speedee</span>
+        </a>
+        <a href="../Projects/ABSA fatca.html" class="tile">
+          <img src="../photos/Absa Header.png" alt="Project 2 Thumbnail">
+          <span>ABSA FATCA</span>
+        </a>
+        <a href="./Capitec.html" class="tile">
+          <img src="../photos/Capitec Header.png" alt="Project 3 Thumbnail">
+          <span>Capitec (W.A.R.M)</span>
+        </a>
+        <a href="../Projects/FNB Sell a vehicle.html" class="tile">
+          <img src="../photos/Sell a vehicle card.png" alt="Project 4 Thumbnail">
+          <span>FNB / Car Scan - Sell a Vehicle</span>
+        </a>
+        <a href="./FNB - Licence renewal.html" class="tile">
+          <img src="../photos/FNB - Licence renewal.png" alt="Project 5 Thumbnail">
+          <span>FNB Licence Renewals</span>
+        </a>
+        <a href="./Huawei.html" class="tile">
+          <img src="../photos/Huawei mock up 2.png" alt="Project 6 Thumbnail">
+          <span>Huawei Tracking system</span>
+        </a>
+        <a href="./QSP.html" class="tile">
+            <img src="../photos/QSP mock up 1.png" alt="Project 6 Thumbnail">
+            <span>Quick Score Pro</span>
+          </a>
+          <a href="./Discovery Vitality.html" class="tile">
+            <img src="../photos/Discovery head.jpg" alt="Project 6 Thumbnail">
+            <span>Discovery - Vitality</span>
+          </a>
+          <a href="./Vikela Tech.html" class="tile">
+            <img src="../photos/Vikela Portal Header.png" alt="Project 6 Thumbnail">
+            <span>Vikela Tech Portal</span>
+          </a>
+          <a href="./Vikela Tech.html" class="tile">
+            <img src="../photos/Pro-Find mock 1.png" alt="Project 6 Thumbnail">
+            <span>Pro - Find</span>
+          </a>
       </div>
     </section>
+    
   </main>
+<script>
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      document.body.classList.toggle('light-theme');
+    });
 
-  <!-- Footer -->
+    ScrollReveal().reveal('.header', { delay: 200, distance: '40px', origin: 'top', duration: 800 });
+    ScrollReveal().reveal('.case-intro', { delay: 300, distance: '40px', origin: 'left', duration: 800 });
+    ScrollReveal().reveal('.case-process', { delay: 400, distance: '40px', origin: 'right', duration: 800 });
+    ScrollReveal().reveal('.case-screens img', { delay: 500, interval: 200, distance: '40px', origin: 'bottom', duration: 800 });
+    ScrollReveal().reveal('.case-reflection', { delay: 600, distance: '40px', origin: 'top', duration: 800 });
+  </script>
+
+<script>
+// Side buttons show/hide and highlight
+const sideButtons = document.querySelectorAll('.side-button');
+const sections = document.querySelectorAll("section[id]");
+let scrollTimeout;
+window.addEventListener('scroll', () => {
+  clearTimeout(scrollTimeout);
+  sideButtons.forEach(btn => btn.classList.remove('show'));
+  scrollTimeout = setTimeout(() => sideButtons.forEach(btn => btn.classList.add('show')), 300);
+
+  let index = sections.length;
+  while(--index && window.scrollY + 150 < sections[index].offsetTop) {}
+  sideButtons.forEach(btn => btn.classList.remove("active"));
+  if(sideButtons[index]) sideButtons[index].classList.add("active");
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const revealElements = document.querySelectorAll(
+    ".about, .testimonials, .testimonial-cards, .contact, .next-project"
+  );
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("reveal");
+        observer.unobserve(entry.target); // only animate once
+      }
+    });
+  }, { threshold: 0.2 });
+
+  revealElements.forEach((el) => observer.observe(el));
+});
+
+</script>
+  <script src="../Javascript.jss"></script>
   <footer>
     <p>© 2025 Designed & Developed by Alfonzo</p>
   </footer>
-
-  <!-- Custom Cursor -->
-  <div class="cursor-dot"></div>
-  <div class="cursor-ring"></div>
-
-  <!-- Scripts -->
-  <script>
-    // Side Buttons
-    lucide.createIcons();
-    const buttons = document.querySelectorAll('.side-button');
-    let isScrolling;
-    function showButtons(){ buttons.forEach(btn=>btn.classList.add('show')); }
-    function hideButtons(){ buttons.forEach(btn=>btn.classList.remove('show')); }
-    window.addEventListener('scroll', ()=>{
-      hideButtons();
-      clearTimeout(isScrolling);
-      isScrolling=setTimeout(()=>{ showButtons(); }, 300);
-    });
-    hideButtons();
-    function scrollToSection(id){ document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
-
-    // Cursor
-    const dot = document.querySelector('.cursor-dot');
-    const ring = document.querySelector('.cursor-ring');
-    document.addEventListener('mousemove', (e)=>{
-      dot.style.left = `${e.clientX}px`;
-      dot.style.top = `${e.clientY}px`;
-      ring.animate({left: `${e.clientX}px`, top: `${e.clientY}px`},{duration:100, fill:'forwards'});
-    });
-    document.addEventListener('mousedown', ()=>{ ring.style.transform='translate(-50%, -50%) scale(0.7)'; });
-    document.addEventListener('mouseup', ()=>{ ring.style.transform='translate(-50%, -50%) scale(1)'; });
-  </script>
-
-  <script src="../Javascript.jss"></script>
 </body>
 </html>

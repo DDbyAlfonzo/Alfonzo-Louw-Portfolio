@@ -1,12 +1,6 @@
-// Dark mode toggle
-const toggle = document.getElementById('darkToggle');
-toggle.addEventListener('click', () => {
-  const html = document.documentElement;
-  const theme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  html.setAttribute('data-theme', theme);
-});
-
-// Tab switching
+// ==========================
+// TABS
+// ==========================
 const tabs = document.querySelectorAll('.tab');
 const panels = document.querySelectorAll('.tab-content');
 
@@ -20,23 +14,67 @@ tabs.forEach(tab => {
   });
 });
 
-// Scroll progress
+// ==========================
+// SCROLL HANDLER: PROGRESS + PARALLAX + FADE-IN + SIDE BUTTONS
+// ==========================
+const scrollIndicator = document.getElementById('scrollIndicator');
+const parallaxElements = document.querySelectorAll('.parallax');
+const faders = document.querySelectorAll('.fade-in');
+const sideButtons = document.querySelectorAll('.side-button');
+let isScrolling;
+
+// IntersectionObserver for fade-in
+const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -100px 0px" };
+const appearOnScroll = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add('visible');
+    observer.unobserve(entry.target);
+  });
+}, appearOptions);
+faders.forEach(fader => appearOnScroll.observe(fader));
+
+// Side button helpers
+function showButtons() { sideButtons.forEach(btn => btn.classList.add('show')); }
+function hideButtons() { sideButtons.forEach(btn => btn.classList.remove('show')); }
+hideButtons();
+
+// Smooth parallax variables
+let scrollY = window.scrollY;
+let targetScrollY = scrollY;
+
+// Unified scroll listener
 window.addEventListener('scroll', () => {
-  const scrollTop = window.scrollY;
+  targetScrollY = window.scrollY;
+
+  // Scroll progress
   const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const progress = (scrollTop / docHeight) * 100;
-  document.getElementById('progress-bar').style.width = `${progress}%`;
+  const scrollPercent = (targetScrollY / docHeight) * 100;
+  if (scrollIndicator) scrollIndicator.style.width = `${scrollPercent}%`;
+
+  // Side buttons show/hide
+  hideButtons();
+  clearTimeout(isScrolling);
+  isScrolling = setTimeout(() => showButtons(), 300);
 });
 
+// Smooth parallax loop
+function animateParallax() {
+  scrollY += (targetScrollY - scrollY) * 0.1; // easing
+  parallaxElements.forEach(el => el.style.setProperty('--scroll-y', `${scrollY * 0.1}px`));
+  requestAnimationFrame(animateParallax);
+}
+animateParallax();
 
-// Final UI Modal Viewer
+// ==========================
+// FINAL UI MODAL VIEWER
+// ==========================
 const images = document.querySelectorAll('.popup-img');
 const modal = document.getElementById('imageModal');
 const modalImg = document.getElementById('modalImage');
 const closeBtn = document.querySelector('.close-btn');
 const prevBtn = document.querySelector('.nav.prev');
 const nextBtn = document.querySelector('.nav.next');
-
 let currentIndex = 0;
 
 function openModal(index) {
@@ -44,141 +82,105 @@ function openModal(index) {
   modalImg.src = images[currentIndex].src;
   modal.classList.remove('hidden');
 }
-
-function closeModal() {
-  modal.classList.add('hidden');
+function closeModal() { modal.classList.add('hidden'); }
+function showNext() { 
+  currentIndex = (currentIndex + 1) % images.length; 
+  modalImg.src = images[currentIndex].src; 
+}
+function showPrev() { 
+  currentIndex = (currentIndex - 1 + images.length) % images.length; 
+  modalImg.src = images[currentIndex].src; 
 }
 
-function showNext() {
-  currentIndex = (currentIndex + 1) % images.length;
-  modalImg.src = images[currentIndex].src;
-}
-
-function showPrev() {
-  currentIndex = (currentIndex - 1 + images.length) % images.length;
-  modalImg.src = images[currentIndex].src;
-}
-
-images.forEach((img, index) => {
-  img.addEventListener('click', () => openModal(index));
-});
-
+images.forEach((img, index) => img.addEventListener('click', () => openModal(index)));
 closeBtn.addEventListener('click', closeModal);
 nextBtn.addEventListener('click', showNext);
 prevBtn.addEventListener('click', showPrev);
-
-document.addEventListener('keydown', (e) => {
+document.addEventListener('keydown', e => {
   if (modal.classList.contains('hidden')) return;
   if (e.key === 'Escape') closeModal();
   if (e.key === 'ArrowRight') showNext();
   if (e.key === 'ArrowLeft') showPrev();
 });
 
-// Scroll Animations
-const faders = document.querySelectorAll('.fade-in');
+// ==========================
+// CAROUSEL
+// ==========================
+document.querySelectorAll(".carousel-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const slideIndex = parseInt(btn.getAttribute("data-slide"));
+    const track = document.querySelector(".carousel-track");
+    const slideWidth = document.querySelector(".carousel-slide").offsetWidth;
 
-const appearOptions = {
-  threshold: 0.1,
-  rootMargin: "0px 0px -100px 0px"
-};
+    track.style.transform = `translateX(-${slideWidth * slideIndex}px)`;
 
-const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    entry.target.classList.add('visible');
-    appearOnScroll.unobserve(entry.target);
+    // Update active button
+    document.querySelectorAll(".carousel-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
   });
-}, appearOptions);
-
-faders.forEach(fader => {
-  appearOnScroll.observe(fader);
 });
 
-window.addEventListener('scroll', () => {
-    const scrollIndicator = document.getElementById('scrollIndicator');
-    const maxScroll = document.body.scrollHeight - window.innerHeight;
-    const scrollPercent = (window.scrollY / maxScroll) * 100;
-    scrollIndicator.style.width = `${scrollPercent}%`;
+// ==========================
+// PARTICLE CURSOR (NO DOT/RING)
+// ==========================
+const cursorParticles = [];
+const particleContainer = document.createElement('div');
+document.body.appendChild(particleContainer);
 
-    // parallax effect
-    document.querySelectorAll('.parallax').forEach(el => {
-      el.style.setProperty('--scroll-y', `${window.scrollY * 0.1}px`);
-    });
-  });
+document.addEventListener('mousemove', e => {
+  // Create a new particle at mouse position
+  const particle = document.createElement('div');
+  particle.classList.add('particle-cursor');
+  particle.style.left = `${e.clientX}px`;
+  particle.style.top = `${e.clientY}px`;
 
-  document.getElementById('themeToggle').addEventListener('click', () => {
-    const html = document.documentElement;
-    html.setAttribute('data-theme', html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-    document.body.style.background = html.getAttribute('data-theme') === 'dark'
-      ? 'linear-gradient(135deg, #1e1e2f, #23232f)'
-      : 'linear-gradient(135deg, #fff0f5, #f0f8ff)';
-  });
+  // Random velocity
+  const vx = (Math.random() - 0.5) * 2;
+  const vy = (Math.random() - 0.5) * 2;
 
-      // Theme toggle
-      const toggleCheckbox = document.getElementById('themeToggle');
+  // Particle object
+  cursorParticles.push({ el: particle, x: e.clientX, y: e.clientY, vx, vy, life: 1 });
+  particleContainer.appendChild(particle);
 
-  // Load theme preference on page load
-  if (localStorage.getItem('theme') === 'light') {
-    document.body.classList.add('light-theme');
-    toggleCheckbox.checked = true;
+  // Limit particles to avoid overload
+  if (cursorParticles.length > 100) {
+    const old = cursorParticles.shift();
+    old.el.remove();
   }
+});
 
-  toggleCheckbox.addEventListener('change', () => {
-    document.body.classList.toggle('light-theme');
-    // Save preference
-    localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
-  });
-  
-      // ScrollReveal animations
-      ScrollReveal().reveal('#header', { delay: 200, distance: '50px', origin: 'top', duration: 800 });
-      ScrollReveal().reveal('#about', { delay: 300, distance: '50px', origin: 'left', duration: 800 });
-      ScrollReveal().reveal('#projects', { delay: 400, distance: '50px', origin: 'right', duration: 800 });
-      ScrollReveal().reveal('#testimonials', { delay: 500, distance: '50px', origin: 'bottom', duration: 800 });
-      ScrollReveal().reveal('#contact', { delay: 600, distance: '50px', origin: 'top', duration: 800 });
+function animateCursorParticles() {
+  for (let i = cursorParticles.length - 1; i >= 0; i--) {
+    const p = cursorParticles[i];
+    p.x += p.vx;
+    p.y += p.vy;
+    p.life -= 0.02;
 
-      document.querySelectorAll(".carousel-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-          const slideIndex = parseInt(btn.getAttribute("data-slide"));
-          const track = document.querySelector(".carousel-track");
-          const slideWidth = document.querySelector(".carousel-slide").offsetWidth;
-          
-          track.style.transform = `translateX(-${slideWidth * slideIndex}px)`;
-      
-          // Update active button
-          document.querySelectorAll(".carousel-btn").forEach(b => b.classList.remove("active"));
-          btn.classList.add("active");
-        });
-      });
+    p.el.style.left = `${p.x}px`;
+    p.el.style.top = `${p.y}px`;
+    p.el.style.opacity = p.life;
+    p.el.style.transform = `translate(-50%, -50%) scale(${p.life})`;
 
-      // Scroll button //
+    if (p.life <= 0) {
+      p.el.remove();
+      cursorParticles.splice(i, 1);
+    }
+  }
+  requestAnimationFrame(animateCursorParticles);
+}
+animateCursorParticles();
 
-      lucide.createIcons();
+// ==========================
+// SCROLLREVEAL
+// ==========================
+ScrollReveal().reveal('#header', { delay: 200, distance: '50px', origin: 'top', duration: 800 });
+ScrollReveal().reveal('#about', { delay: 300, distance: '50px', origin: 'left', duration: 800 });
+ScrollReveal().reveal('#projects', { delay: 400, distance: '50px', origin: 'right', duration: 800 });
+ScrollReveal().reveal('#testimonials', { delay: 500, distance: '50px', origin: 'bottom', duration: 800 });
+ScrollReveal().reveal('#contact', { delay: 600, distance: '50px', origin: 'top', duration: 800 });
 
-      const buttons = document.querySelectorAll('.side-button');
-      let isScrolling;
-  
-      function showButtons() {
-        buttons.forEach(btn => btn.classList.add('show'));
-      }
-  
-      function hideButtons() {
-        buttons.forEach(btn => btn.classList.remove('show'));
-      }
-  
-      function scrollToSection(id) {
-        document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-      }
-  
-      // Start hidden
-      hideButtons();
-  
-      window.addEventListener('scroll', () => {
-        hideButtons();
-        clearTimeout(isScrolling);
-        isScrolling = setTimeout(() => {
-          showButtons();
-        }, 300);
-      });
+// ==========================
+// LUCIDE ICONS
+// ==========================
+lucide.createIcons();
 
-
-      

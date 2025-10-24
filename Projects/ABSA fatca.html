@@ -345,5 +345,30 @@ window.addEventListener('scroll', () => {
   <footer>
     <p>© 2025 Designed & Developed by Alfonzo</p>
   </footer>
+  <div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+
+<script>
+  const dot = document.querySelector('.cursor-dot');
+  const ring = document.querySelector('.cursor-ring');
+
+  document.addEventListener('mousemove', (e) => {
+    dot.style.left = `${e.clientX}px`;
+    dot.style.top = `${e.clientY}px`;
+
+    ring.animate({
+      left: `${e.clientX}px`,
+      top: `${e.clientY}px`
+    }, { duration: 120, fill: 'forwards' });
+  });
+
+  document.addEventListener('click', () => {
+    ring.style.transform = 'translate(-50%, -50%) scale(0.7)';
+    setTimeout(() => {
+      ring.style.transform = 'translate(-50%, -50%) scale(1)';
+    }, 150);
+  });
+</script>
+
 </body>
 </html>

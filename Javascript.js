@@ -152,23 +152,51 @@ window.addEventListener('scroll', () => {
 
       // Scroll button //
 
-      // Wait for full page load
-window.addEventListener("load", () => {
-  // Add .show to all side buttons immediately for testing
-  document.querySelectorAll('.side-button').forEach(btn => btn.classList.add('show'));
+      lucide.createIcons();
 
-  // Initialize Lucide
-  lucide.createIcons({
-    width: 24,
-    height: 24,
-    stroke: "currentColor"
-  });
-});
-
+      const buttons = document.querySelectorAll('.side-button');
+      let isScrolling;
   
-      // Start hidden
-      hideButtons();
+      function showButtons() {
+        buttons.forEach(btn => btn.classList.add('show'));
+      }
   
+      function hideButtons() {
+        buttons.forEach(btn => btn.classList.remove('show'));
+      }
+  
+      function scrollToSection(id) {
+        document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+      }
+  
+      function hideButtons() {
+        if (!isTouchDevice) {
+          sideButtons.forEach(btn => btn.classList.remove('show'));
+        }
+      }
+      
+      function showButtons() {
+        if (!isTouchDevice) {
+          sideButtons.forEach(btn => btn.classList.add('show'));
+        }
+      }
+      
+      // Run on load
+      window.addEventListener("load", () => {
+        // ✅ Desktop gets the show animation
+        if (!isTouchDevice) {
+          sideButtons.forEach(btn => btn.classList.add('show'));
+        }
+      
+        // ✅ Safe lucide init
+        if (window.lucide) {
+          window.lucide.createIcons();
+        } else {
+          console.warn("Lucide not loaded");
+        }
+      });
+      
+      // ✅ Hide buttons while scrolling (desktop only)
       window.addEventListener('scroll', () => {
         hideButtons();
         clearTimeout(isScrolling);
@@ -176,6 +204,6 @@ window.addEventListener("load", () => {
           showButtons();
         }, 300);
       });
-
+      
 
       

@@ -88,7 +88,7 @@ p {
 .side-buttons {
   position: fixed;
   top: 50%;
-  right: 16px;
+  right: 16px; /* <-- changed from 5% to fixed px */
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
@@ -96,6 +96,7 @@ p {
   z-index: 9999;
 }
 
+/* Side button default: hidden off-screen to the right */
 .side-button {
   background-color: #6b46c1;
   color: white;
@@ -109,37 +110,39 @@ p {
   font-size: 16px;
   font-weight: 500;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-  transform: translateX(100%);
+  transform: translateX(120%); /* fully off-screen */
   opacity: 0;
+  pointer-events: none;
   transition: transform 0.4s ease, opacity 0.4s ease;
   cursor: pointer;
 }
 
-.side-button svg {
-  width: 20px;
-  height: 20px;
+.side-button.show {
+  transform: translateX(0); /* slide in fully */
+  opacity: 1;
+  pointer-events: auto;
 }
 
-.side-button {
-  transform: translateX(0) !important;
-  opacity: 1 !important;
-}
-
-
-/* Mobile: icons only */
+/* Mobile: icons only, fully visible */
 @media (max-width: 600px) {
+  .side-buttons {
+    right: 12px; /* fully visible on small screens */
+  }
+
   .side-button {
     border-radius: 50%;
     padding: 10px;
     width: 44px;
     height: 44px;
     justify-content: center;
+    transform: translateX(120%); /* keep hidden default */
   }
 
   .side-button span {
     display: none;
   }
 }
+
 
 /* ==========================
    CARD PROJECT SECTIONS

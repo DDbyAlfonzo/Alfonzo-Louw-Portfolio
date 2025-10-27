@@ -7,10 +7,7 @@
   <link rel="stylesheet" href="../Stylesheet 2.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body class="dark-theme">
 
-<!-- Include Lucide JS -->
-<script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/lucide.min.js"></script>
 
 <!-- Floating Side Buttons -->
 <div class="side-buttons">
@@ -34,21 +31,53 @@
     <i data-lucide="folder-open"></i>
     <span>Other Projects</span>
   </div>
-  <!-- Example Speedee icon -->
-  <div class="side-button" onclick="scrollToSection('Speedee')" title="Speedee™">
-    <i data-lucide="truck"></i>
-    <span>Speedee™</span>
-  </div>
+
 </div>
 
+<script src="https://unpkg.com/lucide@latest"></script>
+
 <script>
-  // Initialize Lucide icons
-  document.addEventListener("DOMContentLoaded", function() {
-    lucide.createIcons({
-      width: 20,
-      height: 20,
-      stroke: "currentColor"
-    });
+  lucide.createIcons();
+
+  const buttons = document.querySelectorAll('.side-button');
+  let isScrolling;
+
+  function showButtons() {
+    buttons.forEach(btn => btn.classList.add('show'));
+  }
+
+  function hideButtons() {
+    buttons.forEach(btn => btn.classList.remove('show'));
+  }
+
+  function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // Utility: Only auto-hide when screen is mobile width
+  function isMobile() {
+    return window.innerWidth <= 768;
+  }
+
+  // Start visible on load
+  document.addEventListener("DOMContentLoaded", showButtons);
+
+  window.addEventListener('scroll', () => {
+    if (isMobile()) {
+      hideButtons(); // Hide immediately while scrolling
+    }
+
+    clearTimeout(isScrolling);
+    isScrolling = setTimeout(() => {
+      showButtons(); // Show again after scrolling stops
+    }, 300);
+  });
+
+  // Ensure visible again if screen resized to desktop
+  window.addEventListener("resize", () => {
+    if (!isMobile()) {
+      showButtons();
+    }
   });
 </script>
 

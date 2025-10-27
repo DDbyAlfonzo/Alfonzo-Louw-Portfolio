@@ -140,6 +140,7 @@
       display: none;
     }
   }
+  
 </style>
 </head>
 
@@ -161,38 +162,53 @@
   </div>
   
   <script src="https://unpkg.com/lucide@latest"></script>
-</head>
-<body>
 
   <script>
     lucide.createIcons();
-
-const buttons = document.querySelectorAll('.side-button');
-let isScrolling;
-
-function showButtons() {
-  buttons.forEach(btn => btn.classList.add('show'));
-}
-
-function hideButtons() {
-  buttons.forEach(btn => btn.classList.remove('show'));
-}
-
-function scrollToSection(id) {
-  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-}
-
-// Start hidden
-hideButtons();
-
-window.addEventListener('scroll', () => {
-  hideButtons();
-  clearTimeout(isScrolling);
-  isScrolling = setTimeout(() => {
-    showButtons();
-  }, 300);
-});
+  
+    const buttons = document.querySelectorAll('.side-button');
+    let isScrolling;
+  
+    function showButtons() {
+      buttons.forEach(btn => btn.classList.add('show'));
+    }
+  
+    function hideButtons() {
+      buttons.forEach(btn => btn.classList.remove('show'));
+    }
+  
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+  
+    // Utility: Only auto-hide when screen is mobile width
+    function isMobile() {
+      return window.innerWidth <= 768;
+    }
+  
+    // Start visible on load
+    document.addEventListener("DOMContentLoaded", showButtons);
+  
+    window.addEventListener('scroll', () => {
+      if (isMobile()) {
+        hideButtons(); // Hide immediately while scrolling
+      }
+  
+      clearTimeout(isScrolling);
+      isScrolling = setTimeout(() => {
+        showButtons(); // Show again after scrolling stops
+      }, 300);
+    });
+  
+    // Ensure visible again if screen resized to desktop
+    window.addEventListener("resize", () => {
+      if (!isMobile()) {
+        showButtons();
+      }
+    });
   </script>
+</head>
+<body>
 
   <header class="project-hero">
     <div class="hero-overlayProject"></div>

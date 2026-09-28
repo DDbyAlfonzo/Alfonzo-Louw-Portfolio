@@ -174,7 +174,7 @@
   function initGL(imgSrc, depthSrc){
     var vs = 'attribute vec2 p;varying vec2 v;void main(){v=p*.5+.5;gl_Position=vec4(p,0.,1.);}';
     var fs = [
-      'precision mediump float;varying vec2 v;',
+      '#ifdef GL_FRAGMENT_PRECISION_HIGH\nprecision highp float;\n#else\nprecision mediump float;\n#endif\nvarying vec2 v;',
       'uniform sampler2D uImg,uDepth,uVid;uniform vec2 uMouse,uTexel;uniform float uAmt,uLight,uVideo,uMix;',
       'vec4 still(){',
       ' vec2 off=uMouse*uAmt;',
@@ -188,7 +188,7 @@
       ' vec3 L=normalize(vec3(uMouse.x*.9+.2,uMouse.y*.6+.35,.8));',
       ' float lam=max(dot(n,L),0.);',
       ' float shade=mix(1.,.84+.26*lam,uLight);',
-      ' float rim=pow(clamp(1.-n.z,0.,1.),1.1)*max(dot(normalize(n.xy+1e-4),normalize(L.xy)),0.);',
+      ' float nl=length(n.xy); float rim=nl>1e-3?pow(clamp(1.-n.z,0.,1.),1.1)*max(dot(n.xy/nl,normalize(L.xy)),0.):0.;',
       ' vec3 rgb=c.rgb*shade+vec3(1.,.74,.44)*rim*.5*uLight*c.a;',
       ' return vec4(rgb,c.a);',
       '}',

@@ -5,7 +5,7 @@ export interface CaseStudy {
   summary: string; tags: string[]; platform: string; tools?: string[]; status?: string; role?: string;
   team?: string; resp?: string; timeline?: string; findings?: string[][]; metrics?: string[][];
   problem: string; approach: string; sections: Section[]; outcome: string; learnings?: string[][];
-  prototype?: string; external?: string;
+  prototype?: string; live?: string; external?: string;
 }
 export const CONTACT = { linkedin: 'https://www.linkedin.com/in/alfonzolouw', cv: '' }; // add URLs before deploying; empty links stay hidden
 export const TOOLS = ['Figma','Illustrator','Photoshop'];
@@ -87,6 +87,26 @@ export const CASES: CaseStudy[] = [
      figs:[['dash_opco','The same dashboard in Ghana and C\u00f4te d\u2019Ivoire']]}
    ],
    outcome:'A home screen that shows more of MoMo at a glance: accessible tabs, favourites and services up front, a personalised Lifestyle section and recent transactions on the dashboard.'},
+
+  {slug:'ordereazi', title:'OrderEazi website', who:'Warp', client:'OrderEazi', hue:'#1B1A6E', cover:'oe_cover',
+   summary:'A marketing website that explains one order-to-delivery platform to many industries and leads visitors to a demo.',
+   tags:['Marketing website','Industry pages','Web'], platform:'Responsive website', tools:['Figma'],
+   problem:'OrderEazi sells two connected products: Central, an order management system, and Commerce, an online store builder. The website had to explain one ecosystem clearly to very different industries and roles, and lead visitors to book a demo.',
+   approach:'I was one of the designers at Warp on the OrderEazi website. We designed a homepage that tells the order-to-delivery story, one industry page template that pairs Commerce and Central for each sector, and a blog, all from a shared set of components.',
+   sections:[
+    {id:'homepage', title:'Homepage', body:['The hero leads with the outcome and four clear benefits, with a work-email field and Watch demo in the first view. Floating product cards show the platform at work without a screenshot tour.', 'Common pain points become questions in an accordion. Each one opens to how OrderEazi helps, next to an order\u2019s journey told through its status updates.'],
+     figs:[['oe_home','Homepage hero'],['oe_obstacles','Pain points answered, beside the order lifecycle'],['oe_support','What every client gets, with paid add-ons clearly marked']]},
+    {id:'industries', title:'Industry pages', body:['Every sector gets its own page from the same template: a hero with email capture, then a Commerce section and a Central section.'],
+     two:true, figs:[['oe_corp','Corporate Clothing & Gifting'],['oe_wholesale','Wholesale & Distribution']]},
+    {id:'template', title:'One repeatable structure', body:['Each product section follows the same rhythm: the challenges that industry faces, how OrderEazi helps, key features and an FAQ. Adding an industry means writing content, not designing a new page.'],
+     figs:[['oe_industry_block','Commerce section on the Corporate Clothing & Gifting page']]},
+    {id:'blog', title:'Blog', body:['A featured story, category filters, search and a card grid with author, date and tags make the content easy to browse.'],
+     figs:[['oe_blog','Blog listing']]}
+   ],
+   status:'Live', resp:'One of the designers on the OrderEazi website at Warp.',
+   metrics:[['Demo requests', '', 'Visitors who enter their work email to watch a demo or talk to the team.'], ['Industry page engagement', '', 'Visitors who scroll past the hero or open an FAQ on an industry page. Higher means the page speaks to them.'], ['Newsletter sign-ups', '', 'Readers who subscribe from the blog to hear about new posts and product updates.']],
+   outcome:'Live at ordereazi.com: a homepage, industry pages built from one template, and a blog, all leading visitors to book a demo.',
+   live:'https://ordereazi.com/'},
 
   {slug:'speedee', title:'Speedee', who:'FNB', hue:'#0E8C8C', cover:'speedee_cover',
    summary:'Tap-on-phone payments that turn a low-cost NFC phone into a card terminal for marketplace sellers.',

@@ -80,7 +80,8 @@ export function caseHTML(c: CaseStudy) {
         measureHTML(c) +
         (c.learnings ? `<section class="csec" id="s-learnings" aria-labelledby="h-learnings"><h2 class="st" id="h-learnings" tabindex="-1">What I learned</h2><ul class="learn">${c.learnings.map((l) => `<li><b>${esc(l[0])}</b><span>${esc(l[1])}</span></li>`).join('')}</ul></section>` : '') +
         `<section class="csec" aria-label="Tools and prototype"><p class="tools-h">Tools</p><div class="toolrow">${(c.tools || TOOLS).map((t) => `<span>${esc(t)}</span>`).join('')}</div>` +
-          (c.prototype ? `<p><a class="proto" href="${esc(c.prototype)}" target="_blank" rel="noopener"><span>${arrow}</span>Open the Figma prototype<span class="sr">(opens in a new tab)</span></a></p>` : '') + '</section>' +
+          (c.prototype ? `<p><a class="proto" href="${esc(c.prototype)}" target="_blank" rel="noopener"><span>${arrow}</span>Open the Figma prototype<span class="sr">(opens in a new tab)</span></a></p>` : '') +
+          (c.live ? `<p><a class="proto" href="${esc(c.live)}" target="_blank" rel="noopener"><span>${arrow}</span>Visit the live site<span class="sr">(opens in a new tab)</span></a></p>` : '') + '</section>' +
       '</div>' +
     '</div>' +
     `<a class="next" href="${caseHref(next.slug)}" data-dark><small>Next case study</small><b>${esc(next.title)}</b><img alt="" loading="lazy" src="${img(next.cover)}"></a>`;

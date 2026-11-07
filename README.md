@@ -1,5 +1,19 @@
 # Alfonzo Louw · Portfolio
 
+**The live site is the prebuilt static site in `site/`.** Pushing to `main` publishes `site/` to GitHub Pages as is, with no build step (see `.github/workflows/deploy.yml`).
+
+- `site/index.html` is the whole portfolio, with all 15 case studies opening in place (`#case-<slug>`).
+- `site/work/<slug>/` redirect pages keep the old case study addresses working.
+- `site/img/` holds the images; `site/og.jpg`, icons, `sitemap.xml` and `robots.txt` sit at the root.
+
+To update the site, replace the files in `site/` and push to `main`.
+
+The previous Next.js version below (`app/`, `lib/`, `public/`) is kept for reference and is no longer deployed.
+
+---
+
+# Alfonzo Louw · Portfolio
+
 Next.js (App Router) static site. Every case study has its own address, e.g. `/work/momo-p2p/`.
 
 ## Run it locally

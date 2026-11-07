@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ddbyalfonzo.github.io/Alfonzo-Louw-Portfolio/sitemap.xml

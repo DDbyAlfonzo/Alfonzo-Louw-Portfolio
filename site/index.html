@@ -29,6 +29,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,300..900&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wght@400..700&family=Mrs+Saint+Delafield&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,300..900&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wght@400..700&family=Mrs+Saint+Delafield&display=swap"></noscript>
 <link rel="preload" as="image" href="img/tn_head.webp" fetchpriority="high">
+<script>try{if(sessionStorage.getItem('al-seen')!=='1'&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('pre-ld')}catch(e){}</script>
 <style>
 /* Layout: athlete-profile structure in a violet-black field. Giant grainy violet titles sit behind each section; gold chamfered trading cards carry the case studies on a pinned horizontal "field" scroll with year markers. */
 :root {
@@ -1205,7 +1206,8 @@ button.ccopy:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px
 .ld-name { position: absolute; left: 0; right: 0; bottom: calc(32px + env(safe-area-inset-bottom, 0px)); display: flex; justify-content: center; align-items: center; gap: 14px; font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: .28em; text-transform: uppercase; color: rgba(241,233,220,.62); opacity: 0; animation: ldIn .8s ease .25s forwards; transition: opacity .3s ease; }
 .ld-name i { width: 5px; height: 5px; background: #D9B25C; transform: rotate(45deg); }
 .ldx.out .ld-name { opacity: 0 !important; animation: none; }
-.ld-on .top .logo img { opacity: 0; }
+.ld-on .top .logo img, .pre-ld .top .logo img { opacity: 0; }
+.pre-ld body::after { content: ""; position: fixed; inset: 0; z-index: 69; background: radial-gradient(60% 55% at 50% 46%, #7A1119 0%, #430A0F 42%, #160608 100%); }
 @media (max-width: 700px) { .ld-wrap { width: 124px; height: 124px; } .ld-mark { width: 64px; } .ld-name { font-size: 10.5px; letter-spacing: .2em; } }
 
 /* ---------- hero image: torn sticker head with design tools bursting out (after trevornoah.com) ---------- */
@@ -1229,8 +1231,8 @@ html:not(.js-in) .tn-topp { display: none; }
 .tn-topp { transform-origin: 8% 30%; }
 .js-in.go .tn-head { transition: transform 1s var(--ease) .15s, opacity .6s ease .15s; }
 .js-in:not(.go) .tn-head { transform: translateX(-50%) translateY(14%); opacity: 0; }
-.js-in.go .tn-topp { transform: translate(-10%, -42%) rotate(-16deg); opacity: 0; visibility: hidden; transition: transform .8s cubic-bezier(.45,0,.55,1) .95s, opacity .3s ease 1.5s, visibility 0s linear 1.85s; }
-.js-in.go .tn-obj { transition: transform .9s var(--spring) calc(1.3s + var(--i) * .07s), opacity .4s ease calc(1.3s + var(--i) * .07s); }
+.js-in.go .tn-topp { transform: translate(-10%, -42%) rotate(-16deg); opacity: 0; visibility: hidden; transition: transform .75s cubic-bezier(.45,0,.55,1) .55s, opacity .3s ease 1.05s, visibility 0s linear 1.4s; }
+.js-in.go .tn-obj { transition: transform .7s var(--spring) calc(.8s + var(--i) * .05s), opacity .35s ease calc(.8s + var(--i) * .05s); }
 .js-in:not(.go) .tn-obj { transform: translateY(42%) rotate(0deg) scale(.4); opacity: 0; }
 @media (min-width: 701px) { .hz-frame .tn-head { --hw: min(40vw, 62svh); left: 69%; top: calc(53svh - var(--hw) * .5); } }
 @media (max-width: 700px) { .hz-frame .tn-head { --hw: min(80vw, 44svh); top: max(104px, calc(35svh - var(--hw) * .62)); } }
@@ -1238,6 +1240,7 @@ html:not(.js-in) .tn-topp { display: none; }
 .hz-copy { position: absolute; z-index: 3; left: var(--gutter-l); top: 53svh; width: min(50vw, 700px); transform: translateY(-50%) translateY(var(--hz-y, 0px)); opacity: var(--hz-o, 1); }
 .js-in .hz-copy.hin { transition: opacity 1s var(--ease) .9s, transform 1.2s var(--ease) .9s; }
 .js-in:not(.go) .hz-copy.hin { opacity: 0; transform: translateY(-50%) translateY(28px); }
+.js-in.go:not(.intro-done) .hz-copy.hin { transition: opacity .9s ease .35s, transform 1.1s var(--ease) .35s !important; }
 .js-in.go .hz-copy.hin { opacity: var(--hz-o, 1); transform: translateY(-50%) translateY(var(--hz-y, 0px)); transition: opacity .2s linear, transform .2s linear; }
 .hero .hz-copy .hz-h { position: static; inset: auto; transform: none !important; opacity: 1 !important; width: auto; max-width: none; text-align: left; margin: 0;
   font-family: var(--head, var(--display)); font-weight: 800; font-variation-settings: "wdth" 100; font-size: clamp(40px, min(5.6vw, 9.6svh), 100px); line-height: .9; letter-spacing: -.038em; color: #F1E9DC; text-wrap: initial; white-space: normal; }
@@ -1966,9 +1969,12 @@ const IMGS = {"momo_inuse": "img/momo_inuse.webp", "p_p2p": "img/p_p2p.webp", "p
     root.classList.add('js-in');
     // logo loader: the DBA mark fades in inside a gold ring, a light sweep crosses it, then it flies into the header
     const ld = document.createElement('div'); ld.className = 'ldx'; ld.setAttribute('aria-hidden', 'true');
-    ld.innerHTML = '<div class="ld-wrap"><svg class="ring" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" pathLength="100"/><circle class="p" cx="50" cy="50" r="48" pathLength="100"/></svg><div class="ld-mark"><div class="ld-in"><img src="img/logo_dba.webp" alt=""><i class="sh"></i></div></div></div><div class="ld-name">Alfonzo Louw <i></i> Senior Product Designer</div>';
-    document.body.appendChild(ld); root.classList.add('ld-on');
-    const ring = ld.querySelector('.ring .p'), mark = ld.querySelector('.ld-mark'), t0 = performance.now(), dur = 680;
+    ld.innerHTML = '<div class="ld-wrap"><svg class="ring" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" pathLength="100"/><circle class="p" cx="50" cy="50" r="48" pathLength="100"/></svg><div class="ld-mark"><div class="ld-in"><img src="img/logo_dba.webp" alt=""><i class="sh"></i></div></div></div>';
+    document.body.appendChild(ld); root.classList.add('ld-on'); root.classList.remove('pre-ld');
+    const ring = ld.querySelector('.ring .p'), mark = ld.querySelector('.ld-mark'), t0 = performance.now();
+    const imgs = [...document.querySelectorAll('.tn-head img, .top .logo img')];
+    const ready = () => imgs.length ? imgs.filter(i => i.complete && i.naturalWidth).length / imgs.length : 1;
+    let shown = 0;
     let left = false;
     const leave = () => {
       if (left) return; left = true;
@@ -1982,8 +1988,9 @@ const IMGS = {"momo_inuse": "img/momo_inuse.webp", "p_p2p": "img/p_p2p.webp", "p
       setTimeout(() => root.classList.remove('ld-on'), 860);
       setTimeout(() => ld.remove(), 1000);
     };
-    (function tick(now) { const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3); ring.style.strokeDashoffset = (100 - 100 * e).toFixed(2); if (k < 1) requestAnimationFrame(tick); else setTimeout(leave, 60); })(t0);
-    setTimeout(leave, 3000);
+    // the ring fills as the hero images arrive: never faster than ~0.6s, never longer than ~2.5s
+    (function tick(now) { const el = now - t0, target = el > 2500 ? 1 : Math.min(Math.min(1, el / 600), ready()); shown = Math.min(target, shown + Math.max(.02, (target - shown) * .35)); ring.style.strokeDashoffset = (100 - 100 * shown).toFixed(2); if (shown >= 1) setTimeout(leave, 80); else requestAnimationFrame(tick); })(t0);
+    setTimeout(leave, 3200);
     setTimeout(intro, 4000);
   }
 })();
@@ -2021,6 +2028,13 @@ const IMGS = {"momo_inuse": "img/momo_inuse.webp", "p_p2p": "img/p_p2p.webp", "p
     o.el.addEventListener('pointerleave', () => tip.classList.remove('on'));
     o.el.addEventListener('click', () => tip.classList.remove('on'));
   });
+})();
+
+/* after the intro, switch the hero copy to quick scroll-linked transitions */
+(() => {
+  const R = document.documentElement, mark = () => setTimeout(() => R.classList.add('intro-done'), 2200);
+  if (R.classList.contains('go')) mark();
+  else new MutationObserver((m, o) => { if (R.classList.contains('go')) { o.disconnect(); mark(); } }).observe(R, { attributes: true, attributeFilter: ['class'] });
 })();
 
 </script>

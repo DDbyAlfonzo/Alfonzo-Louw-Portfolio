@@ -1255,6 +1255,12 @@ button.ccopy:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px
   .kw-head { align-self: start; } .kw-side { justify-content: space-between; margin-top: 10px; }
 }
 
+/* kind words card: same chamfered frame as the site's image containers */
+.kw-face { border-radius: 0; clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 30px 100%, 0 calc(100% - 30px)); box-shadow: inset 0 0 0 1px var(--line-2); }
+.kw-face::before { content: ""; position: absolute; right: 0; top: 0; width: 43px; height: 1px; background: var(--line-2); transform-origin: right top; transform: rotate(45deg) translate(0, 0); pointer-events: none; }
+.kw-face::after { border-radius: 0; }
+.kw-q { right: clamp(44px, 4.4vw, 64px); }
+
 /* ---------- hero image: torn sticker head with design tools bursting out (after trevornoah.com) ---------- */
 .hz-frame .tn-head { --hw: min(33vw, 52svh); position: absolute; z-index: 1; left: 50%; top: calc(71svh - var(--hw) * 1.075); width: var(--hw); aspect-ratio: 696 / 812; transform: translateX(-50%) scale(var(--hz-s, 1)); transform-origin: 50% 45%; }
 .tn-clip { position: absolute; inset: 0; }

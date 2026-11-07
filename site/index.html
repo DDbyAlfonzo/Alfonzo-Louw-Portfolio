@@ -1210,6 +1210,38 @@ button.ccopy:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px
 .pre-ld body::after { content: ""; position: fixed; inset: 0; z-index: 69; background: radial-gradient(60% 55% at 50% 46%, #7A1119 0%, #430A0F 42%, #160608 100%); }
 @media (max-width: 700px) { .ld-wrap { width: 124px; height: 124px; } .ld-mark { width: 64px; } .ld-name { font-size: 10.5px; letter-spacing: .2em; } }
 
+/* ---------- kind words: one recommendation at a time on a turning card ---------- */
+.kw-row { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.6fr); gap: clamp(24px, 4vw, 72px); align-items: end; margin-top: clamp(28px, 4vh, 48px); }
+.kw-side { display: flex; flex-direction: column; gap: 22px; padding-bottom: 6px; }
+.kw-ct { margin: 0; font-size: 13px; letter-spacing: .2em; color: var(--muted); } .kw-ct b { color: var(--gold); font-weight: 600; }
+.kw-nav { display: flex; gap: 10px; }
+.kw-btn { all: unset; box-sizing: border-box; width: 52px; height: 52px; display: grid; place-items: center; cursor: pointer; color: var(--bone); border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--line-2); transition: background .3s, color .3s, transform .4s var(--spring); }
+.kw-btn svg { width: 18px; height: 18px; }
+.kw-btn:hover { background: #D9B25C; color: #140B0D; box-shadow: none; } .kw-btn:active { transform: scale(.94); }
+.kw-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.kw-stage { position: relative; height: var(--kwh, 300px); perspective: 1400px; }
+.kw-cube { position: absolute; inset: 0; transform-style: preserve-3d; transform: translateZ(calc(var(--kwh, 300px) / -2)) rotateX(var(--kwr, 0deg)); transition: transform .95s cubic-bezier(.7,0,.25,1); }
+.kw-face { position: absolute; inset: 0; margin: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 20px; padding: clamp(26px, 3vw, 44px) clamp(28px, 3.4vw, 52px); border-radius: 26px; background: var(--ink-2); box-shadow: inset 0 0 0 1px var(--line), 0 30px 60px -40px var(--shadow); backface-visibility: hidden; -webkit-backface-visibility: hidden; overflow: hidden; }
+.kw-face[data-i="0"] { transform: rotateX(0deg) translateZ(calc(var(--kwh, 300px) / 2)); }
+.kw-face[data-i="1"] { transform: rotateX(-90deg) translateZ(calc(var(--kwh, 300px) / 2)); }
+.kw-face[data-i="2"] { transform: rotateX(-180deg) translateZ(calc(var(--kwh, 300px) / 2)); }
+.kw-face[data-i="3"] { transform: rotateX(-270deg) translateZ(calc(var(--kwh, 300px) / 2)); }
+.kw-face::after { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit; background: linear-gradient(180deg, rgba(255,255,255,.35), transparent 40%); opacity: .5; }
+.kw-q { position: absolute; right: clamp(20px, 3vw, 40px); top: -.18em; font-family: var(--display); font-weight: 900; font-size: clamp(120px, 12vw, 190px); line-height: 1; color: var(--gold); opacity: .18; pointer-events: none; }
+.kw-face blockquote { position: relative; margin: 0; max-width: 34ch; font-family: var(--head, var(--display)); font-weight: 650; font-variation-settings: "wdth" 96; letter-spacing: -.012em; font-size: clamp(22px, 1.9vw, 32px); line-height: 1.22; color: var(--bone); }
+.kw-face figcaption { position: relative; display: flex; flex-direction: column; gap: 4px; }
+.kw-face figcaption b { font-size: 16px; font-weight: 650; } .kw-face figcaption span { font-size: 15px; color: var(--muted); }
+.kw-dots { position: absolute; right: -22px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 6px; }
+.kw-dots i { width: 4px; height: 14px; border-radius: 2px; background: var(--line-2); transition: background .3s, height .4s var(--ease); }
+.kw-dots i.on { background: var(--gold); height: 26px; }
+@media (max-width: 900px) {
+  .kw-row { grid-template-columns: minmax(0, 1fr); }
+  .kw-side { order: 2; flex-direction: row; justify-content: space-between; align-items: center; }
+  .kw-dots { right: auto; left: 50%; top: auto; bottom: -22px; transform: translateX(-50%); flex-direction: row; } .kw-dots i { width: 14px; height: 4px; } .kw-dots i.on { width: 26px; height: 4px; }
+  .kw-face blockquote { font-size: clamp(20px, 5.4vw, 26px); }
+}
+@media (prefers-reduced-motion: reduce) { .kw-cube { transition: none; } }
+
 /* ---------- hero image: torn sticker head with design tools bursting out (after trevornoah.com) ---------- */
 .hz-frame .tn-head { --hw: min(33vw, 52svh); position: absolute; z-index: 1; left: 50%; top: calc(71svh - var(--hw) * 1.075); width: var(--hw); aspect-ratio: 696 / 812; transform: translateX(-50%) scale(var(--hz-s, 1)); transform-origin: 50% 45%; }
 .tn-clip { position: absolute; inset: 0; }
@@ -1413,8 +1445,19 @@ html:not(.js-in) .tn-topp { display: none; }
   <section class="kw" id="words" aria-labelledby="kwTitle">
     <div class="wrap">
       <h2 class="big rv" id="kwTitle">Kind words</h2>
-      <div class="kw-grid">
-        <figure class="kw-c rv big"><blockquote>Alfonzo takes great pride in his work, consistently delivering high-quality results with exceptional attention to detail.</blockquote><figcaption><b>Richard Welcome</b><span>Freelance client</span></figcaption></figure><figure class="kw-c rv big"><blockquote>He brings a blend of humour, inspiration and a strong work ethic, firmly believing that hard work builds character.</blockquote><figcaption><b>Stacey Thomas</b><span>Lead Graphic Designer</span></figcaption></figure><figure class="kw-c rv"><blockquote>Working with Alfonzo was a game-changer. His attention to detail and design thinking truly elevated our product.</blockquote><figcaption><b>Sarah M.</b><span>Product Manager, FNB</span></figcaption></figure><figure class="kw-c rv"><blockquote>Alfonzo’s work on our mobile app UI was top-notch. Super clean, intuitive and well thought out.</blockquote><figcaption><b>James L.</b><span>Startup Founder</span></figcaption></figure><figure class="kw-c rv"><blockquote>He nailed our dashboard redesign. Our users love the new experience and we’ve seen a huge bump in engagement.</blockquote><figcaption><b>Linda R.</b><span>UX Lead, Discovery</span></figcaption></figure>
+      <div class="kw-row">
+        <div class="kw-side rv">
+          <p class="kw-ct mono"><b id="kwNo">01</b> / 05</p>
+          <div class="kw-nav">
+            <button type="button" class="kw-btn" id="kwPrev" aria-label="Previous recommendation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+            <button type="button" class="kw-btn" id="kwNext" aria-label="Next recommendation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+        </div>
+        <div class="kw-stage rv" id="kwStage">
+          <div class="kw-cube" id="kwCube" aria-hidden="true"><figure class="kw-face" data-i="0"><span class="kw-q" aria-hidden="true">“</span><blockquote></blockquote><figcaption><b></b><span></span></figcaption></figure><figure class="kw-face" data-i="1"><span class="kw-q" aria-hidden="true">“</span><blockquote></blockquote><figcaption><b></b><span></span></figcaption></figure><figure class="kw-face" data-i="2"><span class="kw-q" aria-hidden="true">“</span><blockquote></blockquote><figcaption><b></b><span></span></figcaption></figure><figure class="kw-face" data-i="3"><span class="kw-q" aria-hidden="true">“</span><blockquote></blockquote><figcaption><b></b><span></span></figcaption></figure></div>
+          <div class="kw-dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+        <ul class="sr"><li><blockquote>Alfonzo takes great pride in his work, consistently delivering high-quality results with exceptional attention to detail.</blockquote><p>Richard Welcome, Freelance client</p></li><li><blockquote>He brings a blend of humour, inspiration and a strong work ethic, firmly believing that hard work builds character.</blockquote><p>Stacey Thomas, Lead Graphic Designer</p></li><li><blockquote>Working with Alfonzo was a game-changer. His attention to detail and design thinking truly elevated our product.</blockquote><p>Sarah M., Product Manager, FNB</p></li><li><blockquote>Alfonzo’s work on our mobile app UI was top-notch. Super clean, intuitive and well thought out.</blockquote><p>James L., Startup Founder</p></li><li><blockquote>He nailed our dashboard redesign. Our users love the new experience and we’ve seen a huge bump in engagement.</blockquote><p>Linda R., UX Lead, Discovery</p></li></ul>
       </div>
     </div>
   </section>
@@ -1999,6 +2042,40 @@ const IMGS = {"momo_inuse": "img/momo_inuse.webp", "p_p2p": "img/p_p2p.webp", "p
     setTimeout(leave, 3200);
     setTimeout(intro, 4000);
   }
+})();
+</script>
+<script>
+/* kind words: a card that turns like a cube, one recommendation per face (after bhavanakulkarni.com) */
+(() => {
+  const Q = [{"q": "Alfonzo takes great pride in his work, consistently delivering high-quality results with exceptional attention to detail.", "n": "Richard Welcome", "r": "Freelance client"}, {"q": "He brings a blend of humour, inspiration and a strong work ethic, firmly believing that hard work builds character.", "n": "Stacey Thomas", "r": "Lead Graphic Designer"}, {"q": "Working with Alfonzo was a game-changer. His attention to detail and design thinking truly elevated our product.", "n": "Sarah M.", "r": "Product Manager, FNB"}, {"q": "Alfonzo’s work on our mobile app UI was top-notch. Super clean, intuitive and well thought out.", "n": "James L.", "r": "Startup Founder"}, {"q": "He nailed our dashboard redesign. Our users love the new experience and we’ve seen a huge bump in engagement.", "n": "Linda R.", "r": "UX Lead, Discovery"}];
+  const stage = document.getElementById('kwStage'), cube = document.getElementById('kwCube'); if (!stage || !cube || !Q.length) return;
+  const faces = [...cube.querySelectorAll('.kw-face')], dots = [...stage.querySelectorAll('.kw-dots i')], no = document.getElementById('kwNo');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let step = 0, idx = 0, timer = 0, hold = false;
+  const fill = (f, q) => { f.querySelector('blockquote').textContent = q.q; f.querySelector('b').textContent = q.n; f.querySelector('figcaption span').textContent = q.r; };
+  function size() {
+    // the card is as tall as the longest quote needs on this screen
+    let h = 0; const f = faces[0], keep = f.style.transform; f.style.transform = 'none'; f.style.visibility = 'hidden';
+    for (const q of Q) { fill(f, q); h = Math.max(h, f.scrollHeight); }
+    f.style.transform = keep; f.style.visibility = ''; fill(f, Q[idx]);
+    stage.style.setProperty('--kwh', Math.ceil(h + 2) + 'px');
+  }
+  function go(d) {
+    idx = (idx + d + Q.length) % Q.length; step += d;
+    const face = faces[((step % 4) + 4) % 4]; fill(face, Q[idx]);
+    cube.style.setProperty('--kwr', (step * 90) + 'deg');
+    no.textContent = String(idx + 1).padStart(2, '0'); dots.forEach((x, i) => x.classList.toggle('on', i === idx));
+  }
+  fill(faces[0], Q[0]); dots[0] && dots[0].classList.add('on');
+  const play = () => { clearInterval(timer); if (!reduce) timer = setInterval(() => { if (!hold && !document.hidden) go(1); }, 6500); };
+  document.getElementById('kwNext').addEventListener('click', () => { go(1); play(); });
+  document.getElementById('kwPrev').addEventListener('click', () => { go(-1); play(); });
+  stage.addEventListener('pointerenter', () => hold = true); stage.addEventListener('pointerleave', () => hold = false);
+  let sx = 0; stage.addEventListener('touchstart', e => { sx = e.touches[0].clientX; hold = true; }, { passive: true });
+  stage.addEventListener('touchend', e => { const dx = e.changedTouches[0].clientX - sx; hold = false; if (Math.abs(dx) > 40) { go(dx < 0 ? 1 : -1); play(); } }, { passive: true });
+  if ('IntersectionObserver' in window) new IntersectionObserver(es => { es[0].isIntersecting ? play() : clearInterval(timer); }).observe(stage);
+  addEventListener('resize', () => { clearTimeout(size.t); size.t = setTimeout(size, 150); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(size); size();
 })();
 </script>
 <script>

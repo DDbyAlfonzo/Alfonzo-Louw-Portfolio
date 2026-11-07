@@ -1158,7 +1158,13 @@ html:not(.fonts-in) .hero .hname { visibility: hidden; opacity: 0; }
 
 /* ---------- audit fixes ---------- */
 .cmail { font-family: var(--body); font-size: 15px; font-weight: 600; letter-spacing: 0; text-transform: none; }
-button.ccopy { border: 0; cursor: pointer; font: inherit; }
+button.ccopy { all: unset; box-sizing: border-box; width: 52px; height: 52px; display: inline-grid; place-items: center; cursor: pointer; color: var(--bone); box-shadow: inset 0 0 0 1.5px var(--line-2); clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px)); transition: background .3s, color .3s; }
+button.ccopy[hidden] { display: none; }
+button.ccopy svg { width: 20px; height: 20px; }
+button.ccopy .ic-done { display: none; color: #2E9E5B; }
+button.ccopy.done .ic-copy { display: none; } button.ccopy.done .ic-done { display: block; }
+button.ccopy:hover { background: #D9B25C; color: #140B0D; box-shadow: none; }
+button.ccopy:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 .ghostbtn { background: transparent; color: var(--bone); box-shadow: inset 0 0 0 1.5px var(--line-2); }
 .ghostbtn:hover { background: var(--ink-2); }
 @media (max-width: 700px) {
@@ -1421,7 +1427,7 @@ html:not(.js-in) .tn-topp { display: none; }
         <span class="mono g">Let's talk</span>
         <h2 class="big">Simple was made <em>to be built.</em></h2>
         <p class="lede">Hiring for a product design role, or have a product to build? Get in touch.</p>
-        <div class="clinks2"><a class="btn" id="cEmail" hidden href="#"><span class="cmail" id="cEmailLbl">Email me</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><button class="btn ghostbtn ccopy" type="button" id="cCopy" hidden><span class="mono" style="color:inherit" id="cCopyLbl">Copy email</span></button><a class="btn" href="https://www.linkedin.com/in/alfonzolouw" target="_blank" rel="noopener"><span class="mono" style="color:inherit">Message me on LinkedIn</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a></div>
+        <div class="clinks2"><a class="btn" id="cEmail" hidden href="#"><span class="cmail" id="cEmailLbl">Email me</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><button class="ccopy" type="button" id="cCopy" hidden aria-label="Copy email address" title="Copy email"><svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4.5A1.5 1.5 0 0 1 3 13.5v-9A1.5 1.5 0 0 1 4.5 3h9A1.5 1.5 0 0 1 15 4.5V5"/></svg><svg class="ic-done" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg><span class="sr" id="cCopyLbl" aria-live="polite"></span></button><a class="btn" href="https://www.linkedin.com/in/alfonzolouw" target="_blank" rel="noopener"><span class="mono" style="color:inherit">Message me on LinkedIn</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a></div>
       </div>
       <div class="pic"><img id="closerImg" alt="" width="1125" height="1352"></div>
     </div>
@@ -1927,7 +1933,7 @@ const IMGS = {"momo_inuse": "img/momo_inuse.webp", "p_p2p": "img/p_p2p.webp", "p
   // contact details: add your email and CV link here; empty values stay hidden
   const CONTACT = { email: 'alfonzolouw9@gmail.com' };
   if (CONTACT.email) { const e = $('#cEmail'); e.href = 'mailto:' + CONTACT.email; $('#cEmailLbl').textContent = CONTACT.email; e.hidden = false;
-    const cp = $('#cCopy'); if (cp && navigator.clipboard) { cp.hidden = false; cp.addEventListener('click', () => navigator.clipboard.writeText(CONTACT.email).then(() => { $('#cCopyLbl').textContent = 'Copied'; setTimeout(() => $('#cCopyLbl').textContent = 'Copy email', 1800); }).catch(() => {})); } }
+    const cp = $('#cCopy'); if (cp && navigator.clipboard) { cp.hidden = false; cp.addEventListener('click', () => navigator.clipboard.writeText(CONTACT.email).then(() => { cp.classList.add('done'); cp.title = 'Copied'; $('#cCopyLbl').textContent = 'Email address copied'; setTimeout(() => { cp.classList.remove('done'); cp.title = 'Copy email'; $('#cCopyLbl').textContent = ''; }, 1800); }).catch(() => {})); } }
   const fprog = field.querySelector('.prog');
   if (fprog && !reduce) { const h = document.createElement('span'); h.className = 'shint'; h.innerHTML = 'Keep scrolling <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'; const lbl = fprog.querySelector('.mono'); if (lbl) lbl.remove(); fprog.prepend(h);
     addEventListener('scroll', () => { const r = field.getBoundingClientRect(); h.classList.toggle('gone', -r.top > (field.offsetHeight - innerHeight) * 0.15); }, { passive: true }); }

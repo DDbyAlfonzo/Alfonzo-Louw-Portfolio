@@ -1236,7 +1236,12 @@ html:not(.js-in) .tn-topp { display: none; }
 .js-in.go .tn-obj { transition: transform .7s var(--spring) calc(.8s + var(--i) * .05s), opacity .35s ease calc(.8s + var(--i) * .05s); }
 .js-in:not(.go) .tn-obj { transform: translateY(42%) rotate(0deg) scale(.4); opacity: 0; }
 @media (min-width: 701px) { .hz-frame .tn-head { --hw: min(40vw, 62svh); left: 69%; top: calc(53svh - var(--hw) * .5); } }
-@media (max-width: 700px) { .hz-frame .tn-head { --hw: min(80vw, 44svh); top: max(104px, calc(35svh - var(--hw) * .62)); } }
+@media (max-width: 700px) {
+  /* phone: stack the copy right under the head and centre the pair, so there is no gap whatever the browser chrome */
+  .hero { --mhw: min(80vw, 44svh); --mtop: max(104px, calc(50svh - var(--mhw) * .56 - 107px)); }
+  .hz-frame .tn-head { --hw: var(--mhw); top: var(--mtop); }
+  .hz-copy { top: calc(var(--mtop) + var(--mhw) * 1.12 + 14px) !important; bottom: auto !important; }
+}
 /* hero copy: left column */
 .hz-copy { position: absolute; z-index: 3; left: var(--gutter-l); top: 53svh; width: min(50vw, 700px); transform: translateY(-50%) translateY(var(--hz-y, 0px)); opacity: var(--hz-o, 1); }
 .js-in .hz-copy.hin { transition: opacity 1s var(--ease) .9s, transform 1.2s var(--ease) .9s; }
@@ -1267,7 +1272,8 @@ html:not(.js-in) .tn-topp { display: none; }
 .hcases .lbs { display: none; }
 @media (max-width: 700px) { .hcases { padding: 0 12px; font-size: 10.5px; letter-spacing: .12em; margin-right: 4px; } .hcases .lbl { display: none; } .hcases .lbs { display: inline; } }
 @media (min-width: 701px) and (max-width: 1100px) { .hz-frame .tn-head { --hw: min(38vw, 54svh); left: 77%; } .hz-copy { width: 50vw; } .hero .hz-copy .hz-h { font-size: clamp(36px, min(5.2vw, 9svh), 60px); } .hz-lede { max-width: 28ch; } }
-@media (max-width: 700px) and (max-height: 760px) { .hz-frame .tn-head { --hw: min(70vw, 40svh); top: 100px; } .hz-lede { display: none; } }
+@media (max-width: 380px) { .hz-eb { font-size: 10px; letter-spacing: .1em; gap: 8px; } .hz-eb::before { width: 12px; } }
+@media (max-width: 700px) and (max-height: 700px) { .hero { --mhw: min(66vw, 38svh); --mtop: 96px; } .hz-lede { display: none; } }
 /* header on the content grid; logo lifted off dark backgrounds */
 .top .tl a:first-child { padding-left: 0; }
 @media (min-width: 701px) { .top.pill { width: calc(min(100vw, 1440px) - var(--gutter-l) - var(--gutter-r) + 44px); padding-left: 22px; padding-right: 22px; } }

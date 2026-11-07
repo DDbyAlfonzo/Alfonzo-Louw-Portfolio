@@ -1175,6 +1175,11 @@ button.ccopy { border: 0; cursor: pointer; font: inherit; }
 @media (max-width: 700px) { .hz-scroll { display: none; } }
 @media (prefers-reduced-motion: reduce) { .hz-scroll i::after { animation: none; } }
 
+/* clients: slim strip between About and Case studies */
+.clients.cstrip { position: relative; z-index: 2; padding-block: clamp(40px, 6vh, 64px) clamp(36px, 5vh, 56px); background: var(--ink); overflow: hidden; scroll-margin-top: 90px; }
+.cstrip .cs-in h2 { margin: 0; font-size: 12px; }
+.cstrip .marquee { margin-top: 22px; border-block: 1px solid var(--line-2); }
+
 /* ---------- hero image: torn sticker head with design tools bursting out (after trevornoah.com) ---------- */
 .hz-frame .tn-head { --hw: min(33vw, 52svh); position: absolute; z-index: 1; left: 50%; top: calc(71svh - var(--hw) * 1.075); width: var(--hw); aspect-ratio: 696 / 813; transform: translateX(-50%) scale(var(--hz-s, 1)); transform-origin: 50% 45%; }
 .tn-clip { position: absolute; inset: 0; }
@@ -1257,9 +1262,9 @@ html:not(.js-in) .tn-topp { display: none; }
   <ol>
     <li><a href="#top" tabindex="-1">Home <small>01</small></a></li>
     <li><a href="#rookie" tabindex="-1">About <small>02</small></a></li>
-    <li><a href="#work" tabindex="-1">Case studies <small>03</small></a></li>
-    <li><a href="#ventures" tabindex="-1">Products <small>04</small></a></li>
-    <li><a href="#clients" tabindex="-1">Clients <small>05</small></a></li>
+    <li><a href="#clients" tabindex="-1">Clients <small>03</small></a></li>
+    <li><a href="#work" tabindex="-1">Case studies <small>04</small></a></li>
+    <li><a href="#ventures" tabindex="-1">Products <small>05</small></a></li>
     <li><a href="#contact" tabindex="-1">Let's talk <small>06</small></a></li>
   </ol>
   <div class="s-foot"><a class="mono" href="https://www.linkedin.com/in/alfonzolouw" target="_blank" rel="noopener" tabindex="-1">LinkedIn ↗</a><span class="mono m">Johannesburg · <span class="js-time">SAST</span></span></div>
@@ -1334,6 +1339,14 @@ html:not(.js-in) .tn-topp { display: none; }
 
   <!-- MORE WORK -->
 
+  <!-- CLIENTS: slim trust strip -->
+  <section class="clients cstrip" id="clients" aria-labelledby="clTitle">
+    <div class="wrap cs-in">
+      <h2 class="mono g" id="clTitle">Clients &amp; teams I’ve designed for</h2>
+      <ul class="sr"><li>MTN MoMo</li><li>FNB</li><li>Deloitte</li><li>Dubai Land Department</li><li>Capitec</li><li>ABSA</li><li>Discovery</li><li>Warp</li><li>Huawei</li><li>Vikela Tech</li><li>RTMC</li><li>Retro Rabbit</li><li>SABC</li></ul>
+    </div>
+    <div class="marquee" aria-hidden="true"><div class="run" id="logoRun"></div></div>
+  </section>
 
   <!-- FIELD: case studies as signature cards -->
   <section class="field" id="work" aria-labelledby="workTitle">
@@ -1397,25 +1410,7 @@ html:not(.js-in) .tn-topp { display: none; }
     </div>
   </section>
 
-  <!-- CLIENTS -->
-  <section class="clients" id="clients">
-    <div class="wrap">
-      <div class="sec-head rv">
-        <h2 class="big">Clients</h2>
-        <a class="link" href="#work"><span class="c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="mono">See all work</span></a>
-      </div>
-      <div class="feat rv">
-        <div class="fr"><img data-src="momo_inuse" alt="MoMo Send Money in use"></div>
-        <div class="b">
-          <span class="mono g">Signature client</span>
-          <h3>MTN<br>MoMo</h3>
-          <p class="lede">Send money, bill payments and the home screen, designed for each market in English and French. I run the research and play it back to the team.</p>
-          <a class="link" href="https://ddbyalfonzo.github.io/Alfonzo-Louw-Portfolio/work/momo-p2p/" target="_blank" rel="noopener"><span class="c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="mono">Read the case study</span></a>
-        </div>
-      </div>
-      <div class="marquee" aria-hidden="true"><div class="run" id="logoRun"></div></div>
-    </div>
-  </section>
+
 
   <!-- CLOSER -->
   <section class="closer" id="contact">
@@ -1721,7 +1716,7 @@ const IMGS = {"momo_inuse": "img/momo_inuse.webp", "p_p2p": "img/p_p2p.webp", "p
   menuBtn.addEventListener('click', () => setSheet(!root.classList.contains('sheet-open')));
   sheet.addEventListener('click', e => { if (e.target.closest('a')) setSheet(false); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') setSheet(false); });
-  document.addEventListener('click', e => { if (e.defaultPrevented) return; const a = e.target.closest('a[href^="#"]'); if (!a) return; const hh = a.getAttribute('href').slice(1); if (hh.startsWith('case-')) { e.preventDefault(); openCaseFromLink(hh.slice(5)); return; } const t = document.getElementById(hh); if (!t) return; e.preventDefault(); goTo(t.offsetTop); });
+  document.addEventListener('click', e => { if (e.defaultPrevented) return; const a = e.target.closest('a[href^="#"]'); if (!a) return; const hh = a.getAttribute('href').slice(1); if (hh.startsWith('case-')) { e.preventDefault(); openCaseFromLink(hh.slice(5)); return; } const t = document.getElementById(hh); if (!t) return; e.preventDefault(); goTo(t.offsetTop - (parseFloat(getComputedStyle(t).scrollMarginTop) || 0)); });
 
   // reveals
   if (!reduce && 'IntersectionObserver' in window) {

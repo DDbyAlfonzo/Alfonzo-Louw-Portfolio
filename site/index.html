@@ -1242,6 +1242,19 @@ button.ccopy:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px
 }
 @media (prefers-reduced-motion: reduce) { .kw-cube { transition: none; } }
 
+/* kind words: title and controls beside the card */
+.kw-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1.55fr); grid-template-areas: "head card" "side card"; grid-template-rows: auto auto; align-items: center; column-gap: clamp(32px, 5vw, 96px); row-gap: 28px; margin-top: 0; }
+.kw-head { grid-area: head; align-self: end; display: flex; flex-direction: column; gap: 14px; }
+.kw-head h2 { margin: 0; }
+.kw-sub { margin: 0; max-width: 30ch; font-size: clamp(16px, .4vw + 14px, 19px); line-height: 1.5; color: var(--muted); }
+.kw-side { grid-area: side; align-self: start; flex-direction: row; align-items: center; gap: 22px; padding-bottom: 0; }
+.kw-stage { grid-area: card; }
+.kw { padding-block: clamp(80px, 11vh, 140px); }
+@media (max-width: 900px) {
+  .kw-row { grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "card" "side"; row-gap: 24px; }
+  .kw-head { align-self: start; } .kw-side { justify-content: space-between; margin-top: 10px; }
+}
+
 /* ---------- hero image: torn sticker head with design tools bursting out (after trevornoah.com) ---------- */
 .hz-frame .tn-head { --hw: min(33vw, 52svh); position: absolute; z-index: 1; left: 50%; top: calc(71svh - var(--hw) * 1.075); width: var(--hw); aspect-ratio: 696 / 812; transform: translateX(-50%) scale(var(--hz-s, 1)); transform-origin: 50% 45%; }
 .tn-clip { position: absolute; inset: 0; }
@@ -1444,8 +1457,12 @@ html:not(.js-in) .tn-topp { display: none; }
   <!-- KIND WORDS -->
   <section class="kw" id="words" aria-labelledby="kwTitle">
     <div class="wrap">
-      <h2 class="big rv" id="kwTitle">Kind words</h2>
       <div class="kw-row">
+        <div class="kw-head rv">
+          <span class="mono g">Kind words</span>
+          <h2 class="big" id="kwTitle">What people say</h2>
+          <p class="kw-sub">From clients, managers and the teams I’ve designed with.</p>
+        </div>
         <div class="kw-side rv">
           <p class="kw-ct mono"><b id="kwNo">01</b> / 05</p>
           <div class="kw-nav">
